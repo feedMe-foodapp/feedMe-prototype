@@ -6,6 +6,21 @@ import {
     analytics
 } from 'ionicons/icons';
 
+/* Axios */
+import { 
+    AxiosResponse 
+} from 'axios';
+
+/* Service(s) */
+import {
+    ServiceLoader
+} from 'src/utils/services/serviceLoader';
+
+/* Model(s) */
+import { 
+    ReceiptModel
+} from 'src/shared/models/receiptModel';
+
 /* Component(s) */
 import ProcessBtnContainer from 'src/components/shared/process-btn-container/ProcessBtnContainer';
 
@@ -14,7 +29,7 @@ import styles from './OCRProcessor.module.scss';
 
 /* Interface(s) */
 interface OCRProcessorProps {
-    receipt: string;
+    receipt: ReceiptModel;
 }
 
 const OCRProcessor: React.FC<OCRProcessorProps> = ({ receipt }) => {
@@ -24,7 +39,17 @@ const OCRProcessor: React.FC<OCRProcessorProps> = ({ receipt }) => {
             <ProcessBtnContainer 
                 label={'Press button below to start analyzing document'}
                 icon={analytics}
-                disabled={!receipt}
+                disabled={!receipt.content}
+                click={
+                    () => {
+                        // ServiceLoader.azure().analyzeReceipt().then((result: any) => {
+                        //     console.log(result);
+                        // });
+                        ServiceLoader.azure().uploadReceipt(receipt).then((response: AxiosResponse) => {
+                            console.log(response);
+                        });
+                    }
+                }
             />
         </div>
     );

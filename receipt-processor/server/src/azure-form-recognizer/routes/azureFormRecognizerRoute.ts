@@ -1,11 +1,15 @@
 /* Express */
-import express from 'express';
+import express from "express";
 
 /* Controller */
-import { sendSimpleMessage } from '../controller/azureFormRecognizerController';
+import { 
+    uploadReceipt,
+    analyzeReceipt 
+} from '../controller/azureFormRecognizerController';
 
 const router = express.Router();
 
-router.get('/', sendSimpleMessage);
+router.post("/upload", uploadReceipt);
+router.get("/analyze", analyzeReceipt);
 
 export = router;

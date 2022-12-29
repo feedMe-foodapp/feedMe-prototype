@@ -51,7 +51,7 @@ const PlaygroundPage: React.FC = () => {
                 <IonRouterOutlet>
                     <Route exact path={`${path}/azure`}>
                         <AzureTab 
-                            receipt={receiptState.receipt.path}
+                            receipt={receiptState.receipt}
                         />
                     </Route>
                     <Route

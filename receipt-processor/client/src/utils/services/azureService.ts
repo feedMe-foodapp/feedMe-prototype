@@ -15,7 +15,16 @@ import {
 
 export class AzureService {
 
-    public analyzeReceipt(receipt: ReceiptModel): Promise<AxiosResponse> {
-        return axios.post(`http://${environments.azure.host}:${environments.azure.port}/${environments.azure.prefix}`, receipt);
+    public uploadReceipt(receipt: ReceiptModel): Promise<AxiosResponse> {
+        console.log(receipt)
+        return axios.post(`http://${environments.azure.host}:${environments.azure.port}/${environments.azure.prefix}/upload`, receipt);
+    }
+
+    // public analyzeReceipt(id: string): Promise<AxiosResponse> {
+    //     return axios.post(`http://${environments.azure.host}:${environments.azure.port}/${environments.azure.prefix}`, id);
+    // }
+
+    public analyzeReceipt(): Promise<AxiosResponse> {
+        return axios.get(`http://${environments.azure.host}:${environments.azure.port}/${environments.azure.prefix}/analyze`);
     }
 }

@@ -6,6 +6,7 @@ export const environment = {
     prefix: 'api'
 };
 
+// Environment for Azure
 export const environments = {
     'azure': {
         host: 'localhost',

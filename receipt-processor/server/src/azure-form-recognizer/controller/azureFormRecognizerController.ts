@@ -1,13 +1,13 @@
 /* Express */
 import { Request, Response } from 'express';
 import * as dotenv from 'dotenv';
-import fs from 'fs';
-import path from 'path';
+// import fs from 'fs';
+// import path from 'path';
+import buffer from 'buffer-from';
 
 /* Microsoft Azure */
 import { 
-  BlobServiceClient, 
-  StorageSharedKeyCredential 
+  BlobServiceClient 
 } from '@azure/storage-blob';
 
 import {
@@ -22,8 +22,6 @@ import {
 
 dotenv.config();
 
-const sharedKeyCredential = new StorageSharedKeyCredential(`${process.env.AZURE_STORAGE_ACCOUNT_NAME}`, `${process.env.AZURE_KEY}`);
-
 /* 
 * Use DefaultAzureCredential() to connect to storage account
 *
@@ -37,11 +35,13 @@ const blobServiceClient = new BlobServiceClient(
   new DefaultAzureCredential()
 );
 
+// formRecognizerClient
 const formRecognizerClient = new DocumentAnalysisClient(
   `${process.env.AZURE_ENDPOINT}`,
   new AzureKeyCredential(`${process.env.AZURE_KEY}`)
 );
 
+// containerClient
 const containerClient = blobServiceClient.getContainerClient(`${process.env.AZURE_STORAGE_CONTAINER}`);
 
 /* Receipt 'example_receipt.jpg' exists on device */
@@ -52,15 +52,16 @@ const containerClient = blobServiceClient.getContainerClient(`${process.env.AZUR
 //   "example_receipt.jpg"
 // );
 
-const listBlob = async () => {
-  for await(const blob of containerClient.listBlobsFlat()) {
-    const tmpBlockBlobClient = containerClient.getBlockBlobClient(blob.name);
-    console.log(`name: ${blob.name} | url: ${tmpBlockBlobClient.url}` );
-    return tmpBlockBlobClient;
-  }
-}
+const upload = async (content: string) => {
+  const matchesBlobImg = content.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
+  const imgType = matchesBlobImg![1];
+  let imgBuffer = buffer(matchesBlobImg![2], 'base64');
 
-const recognize = async () => {
+  const blockBlobClient = containerClient.getBlockBlobClient(`test.${imgType.split('/')[1]}`);
+  const uploadBlobResponse = await blockBlobClient.upload(imgBuffer, imgBuffer.length);
+};
+
+const analyze = async () => {
   /* 
   * If receipt exists on device, a readable stream have to be created in order to recognize the values of the image.
   * Therefore, the method createReadStream() from package fs is used, which allows to work with the file system of a computer.
@@ -79,7 +80,6 @@ const recognize = async () => {
     * The prebuilt model 'Receipt' is used to recognize values from a receipt.
     * This is totally fine for the first usage of the prototype.
     * In the further development process, it is required to train a custom model for a specific usecase.
-    * 
     */
     PrebuiltModels.Receipt,
     tmpReceipt,
@@ -91,20 +91,20 @@ const recognize = async () => {
   );
 
   const { documents: [receiptDocument] } = await poller.pollUntilDone();
-
   const receipt = receiptDocument.fields;
-
-  console.log(receipt);
+  return receipt;
 };
 
-const sendSimpleMessage = async (req: Request, res: Response) => {
-  // recognize();
-  // downloadBlob();
-  // const receipt = listBlob();
-  // receipt.then(res => recognize);
-  // listBlob();
-  console.log(containerClient.getAppendBlobClient('example_receipt.jpg').url)
-  res.send('Services: Azure Form Recognizer and Azure Blob Storage');
+const uploadReceipt = async (req: Request, res: Response) => {
+  await upload(req.body.content);
+  res.send('Finished uploading image').status(200);
 };
 
-export { sendSimpleMessage };
+const analyzeReceipt = async (req: Request, res: Response) => {
+  res.json(await analyze());
+};
+
+export { 
+  uploadReceipt,
+  analyzeReceipt 
+};

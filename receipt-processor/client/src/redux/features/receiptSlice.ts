@@ -23,7 +23,7 @@ interface ReceiptState {
 const initialState: ReceiptState = {
     receipt: {
         id: '',
-        path: ''
+        content: ''
     }
 };
 
@@ -33,7 +33,7 @@ export const receiptSlice = createSlice({
     reducers: {
         uploadReceipt: (state, action) => {
             // uploading a receipt will automatically generate a uuid as id
-            state.receipt = {id: uuidv4(), path: action.payload}; 
+            state.receipt = {id: uuidv4(), content: action.payload}; 
         },
         deleteReceipt: (state) => {
             state.receipt = initialState.receipt;

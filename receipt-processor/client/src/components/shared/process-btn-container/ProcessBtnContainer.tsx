@@ -15,12 +15,14 @@ interface ProcessBtn {
     label: string;
     icon?: string;
     disabled?: boolean;
+    click: () => void;
 }
 
 const ProcessBtnContainer: React.FC<ProcessBtn> = ({
     label,
     icon,
-    disabled
+    disabled,
+    click
 }) => {
     return (
         <div className={styles.process_btn_container}>
@@ -31,7 +33,8 @@ const ProcessBtnContainer: React.FC<ProcessBtn> = ({
             </div>
             <IonFabButton
                 className={styles.process_btn}
-                disabled={disabled}>
+                disabled={disabled}
+                onClick={click}>
                 <IonIcon
                     className={styles.icon}
                     icon={icon}
