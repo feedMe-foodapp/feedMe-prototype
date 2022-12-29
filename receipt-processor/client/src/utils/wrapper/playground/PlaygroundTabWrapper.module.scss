@@ -1,0 +1,37 @@
+/* Stylesheet of PlaygroundTabWrapper.tsx */
+
+.playground_tab_wrapper {
+    padding: 6px;
+    height: calc(100% - 62px) !important;
+    width: 100%;
+
+    .row {
+        height: 100%;
+
+        .col {
+            padding: 0px 12px 12px 12px;
+            height: 100%;
+
+            .card {
+                margin: 0;
+                height: 100%;
+                border-radius: 12px;
+                --background: #3a4559;
+            }
+        }
+    }
+}
+
+/* set Media Queries for different display sizes and orientation of devices */
+
+@media screen and (min-width: 512px) {
+    .playground_tab_wrapper {
+        height: calc(100% - 82px) !important;
+
+        .row {
+            .col {
+                padding: 0px 12px 0px 12px;
+            }
+        }
+    }
+}

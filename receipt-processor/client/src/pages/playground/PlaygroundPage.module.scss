@@ -1,0 +1,31 @@
+/* Stylesheet of PlaygroundPage.tsx */
+
+.tabs {
+    .tab_bar {
+        height: 62px;
+        --background: var(--ion-color-primeColor);
+        --border: none;
+
+        .tab_btn {
+            .icon {
+                font-size: 32px;
+            }
+        }
+    }
+}
+
+/* set Media Queries for different display sizes and orientation of devices */
+
+@media screen and (min-width: 512px) {
+    .tabs {
+        .tab_bar {
+            height: 72px;
+
+            .tab_btn {
+                .icon {
+                    font-size: 32px;
+                }
+            }
+        }
+    }
+}
