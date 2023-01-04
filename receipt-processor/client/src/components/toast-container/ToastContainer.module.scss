@@ -8,6 +8,7 @@
     height: 68px;
     width: 100%;
     animation: slide-up $toast;
+    animation: fade-down $toast-container;
 
     .toast {
         display: flex;
@@ -53,7 +54,6 @@
                 .row {
                     .info_col {
                         display: flex;
-                        // justify-content: flex-start;
                     }
 
                     .close_col {

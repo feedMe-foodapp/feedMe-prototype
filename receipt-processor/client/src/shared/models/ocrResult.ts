@@ -1,4 +1,4 @@
-/* ocrResult.ts */
+/* ocrResult.ts (model) */
 
 /* Model(s) */
 import {

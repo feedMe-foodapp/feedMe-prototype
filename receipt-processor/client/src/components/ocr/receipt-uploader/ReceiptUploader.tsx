@@ -27,6 +27,11 @@ import {
     CameraResultType
 } from '@capacitor/camera';
 
+/* uuid */
+import { 
+    v4 as uuidv4 
+} from 'uuid';
+
 /* Stylesheet */
 import styles from './ReceiptUploader.module.scss';
 
@@ -51,7 +56,11 @@ const ReceiptUploader: React.FC<ReceiptUploaderProps> = ({
             });
 
             if(image.dataUrl) {
-                dispatch(uploadReceipt(image.dataUrl));
+                dispatch(uploadReceipt({
+                    id: uuidv4(), 
+                    content: image.dataUrl, 
+                    uploadedToBlobStorage: false
+                }));
             }
         } catch(error) {
             console.error(error);

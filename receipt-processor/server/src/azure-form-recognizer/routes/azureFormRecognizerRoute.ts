@@ -4,12 +4,14 @@ import express from "express";
 /* Controller */
 import { 
     uploadReceipt,
-    analyzeReceipt 
+    analyzeReceipt,
+    deleteReceipt 
 } from '../controller/azureFormRecognizerController';
 
 const router = express.Router();
 
 router.post("/upload", uploadReceipt);
-router.get("/analyze", analyzeReceipt);
+router.post("/analyze", analyzeReceipt);
+router.post("/delete", deleteReceipt);
 
 export = router;

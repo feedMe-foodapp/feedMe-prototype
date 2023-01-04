@@ -23,6 +23,10 @@ import {
     OptionFabBtnModel
 } from 'src/shared/models/optionFabBtn';
 
+import {
+    ReceiptModel
+} from 'src/shared/models/receipt';
+
 /* Mock(s) */
 import { 
     OptionFabKey
@@ -37,7 +41,7 @@ import styles from './OptionFabContainer.module.scss';
 /* Interface(s) */
 interface OptionFabContainerProps {
     optionFabBtn: OptionFabBtnModel[];
-    receipt: string;
+    receipt: ReceiptModel;
 }
 
 const OptionFabContainer: React.FC<OptionFabContainerProps> = ({ optionFabBtn, receipt }) => {
@@ -78,15 +82,15 @@ const OptionFabContainer: React.FC<OptionFabContainerProps> = ({ optionFabBtn, r
                             className={styles.fab_list_btn}
                             style={{ 
                                 '--background': optionFabBtn.backgroundColor,
-                                opacity: optionFabBtn.key === OptionFabKey.DELETE && !receipt
-                                    ? 0.5 : 1
+                                opacity: optionFabBtn.key === OptionFabKey.DELETE 
+                                    && receipt.content.length === 0 ? 0.5 : 1
                             }}
                             onClick={
                                 () => {
-                                    optionFabBtn.click(dispatch);
+                                    optionFabBtn.click(dispatch, receipt);
                                 }
                             }
-                            disabled={optionFabBtn.key === OptionFabKey.DELETE && !receipt}>
+                            disabled={optionFabBtn.key === OptionFabKey.DELETE && receipt.content.length === 0}>
                             <IonIcon
                                 className={styles.icon}
                                 icon={optionFabBtn.icon}

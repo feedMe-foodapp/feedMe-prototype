@@ -81,7 +81,7 @@ const PlaygroundTabWrapper: React.FC<PlaygroundTabWrapperProps> = ({ children })
                                     {__index === 2 ? (
                                         <OptionFabContainer
                                             optionFabBtn={optionFabBtn}
-                                            receipt={receiptState.receipt.content}
+                                            receipt={receiptState.receipt}
                                         />
                                     ) : undefined}
                                 </IonCard>

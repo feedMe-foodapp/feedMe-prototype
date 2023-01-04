@@ -36,9 +36,8 @@ const ToastContainer: React.FC = () => {
     useEffect(() => {
         setTimeout(() => {
             dispatch(showToast(false));
-        }, 5000);
+        }, 9500);
     });
-
 
     return (
         <React.Fragment>

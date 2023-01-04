@@ -7,7 +7,7 @@ import PlaygroundTabWrapper from 'src/utils/wrapper/playground/PlaygroundTabWrap
 /* Model(s) */
 import {
     ReceiptModel
-} from 'src/shared/models/receiptModel';
+} from 'src/shared/models/receipt';
 
 /* Component(s) */
 import ReceiptPreview from 'src/components/shared/receipt-preview/ReceiptPreview';

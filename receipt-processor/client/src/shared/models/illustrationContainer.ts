@@ -1,4 +1,4 @@
-/* illustrationContainer.ts */
+/* illustrationContainer.ts (model) */
 
 /* Model(s) */
 export interface IllustrationContainerPropsModel {

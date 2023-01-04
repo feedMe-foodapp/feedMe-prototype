@@ -1,5 +1,6 @@
 /* toastSlice.ts */
 
+/* React-Redux */
 import {
     createSlice
 } from '@reduxjs/toolkit';
@@ -24,7 +25,7 @@ const initialState: ToastState = {
 };
 
 export const toastSlice = createSlice({
-    name: 'toastSlice',
+    name: 'toast',
     initialState,
     reducers: {
         setToast: (state, action) => {

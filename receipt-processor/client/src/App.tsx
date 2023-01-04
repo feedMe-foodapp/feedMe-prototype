@@ -2,9 +2,9 @@
 import React from 'react';
 
 /* Ionic */
-import { 
-  IonApp, 
-  setupIonicReact 
+import {
+  IonApp,
+  setupIonicReact
 } from '@ionic/react';
 
 /* Util(s) */
@@ -12,6 +12,7 @@ import AppRouter from 'src/utils/router/AppRouter';
 
 /* Component(s) */
 import ToastContainer from 'src/components/toast-container/ToastContainer';
+import LoadingContainer from 'src/components/loading-container/LoadingContainer';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -34,11 +35,14 @@ import './theme/variables.css';
 
 setupIonicReact();
 
-const App: React.FC = () => (
-  <IonApp>
-    <AppRouter />
-    <ToastContainer />
-  </IonApp>
-);
+const App: React.FC = () => {
+  return (
+    <IonApp>
+      <AppRouter />
+      <ToastContainer />
+      <LoadingContainer />
+    </IonApp>
+  )
+}
 
 export default App;

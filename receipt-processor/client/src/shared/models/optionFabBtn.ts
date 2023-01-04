@@ -1,4 +1,4 @@
-/* optionFabBtn.ts (Model) */
+/* optionFabBtn.ts (model) */
 
 export enum OptionFabKey {
     DELETE

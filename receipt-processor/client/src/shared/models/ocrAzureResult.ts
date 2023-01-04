@@ -1,4 +1,4 @@
-/* ocrAzureResult.ts */
+/* ocrAzureResult.ts (model) */
 
 export interface OCRAzureResultModel {
     status: string;

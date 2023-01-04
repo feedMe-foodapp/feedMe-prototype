@@ -22,6 +22,7 @@ import {
 import receiptReducer from 'src/redux/features/receiptSlice';
 import ocrResultReducer from 'src/redux/features/ocrResultSlice';
 import toastReducer from 'src/redux/features/toastSlice';
+import keyValueReducer from 'src/redux/features/keyValueSlice';
 
 const persistConfig = {
     receipt: {
@@ -43,7 +44,8 @@ const store = configureStore({
     reducer: {
         receipt: persistedReducer.receipt,
         ocrResult: persistedReducer.ocrResult,
-        toast: toastReducer
+        toast: toastReducer,
+        keyValue: keyValueReducer
     },
     middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
