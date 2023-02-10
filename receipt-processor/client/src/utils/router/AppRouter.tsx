@@ -15,16 +15,22 @@ import {
 import {
     IonReactRouter
 } from '@ionic/react-router';
+
+/* Page(s) */
+import HomePage from 'src/pages/home/HomePage';
 import PlaygroundPage from 'src/pages/playground/PlaygroundPage';
 
 const AppRouter: React.FC = () => {
     return (
         <IonReactRouter>
             <IonRouterOutlet id="app-menu">
+                <Route path="/home">
+                    <HomePage />
+                </Route>
                 <Route path="/playground">
                     <PlaygroundPage />
                 </Route>
-                <Route render={() => <Redirect to="/playground" />} />
+                <Route render={() => <Redirect to="/home" />} />
             </IonRouterOutlet>
         </IonReactRouter>
     );

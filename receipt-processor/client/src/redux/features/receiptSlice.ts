@@ -2,7 +2,8 @@
 
 /* React-Redux */
 import {
-    createSlice, PayloadAction
+    createSlice, 
+    PayloadAction
 } from '@reduxjs/toolkit';
 
 /* Model(s) */
@@ -27,7 +28,7 @@ export const receiptSlice = createSlice({
     name: 'receiptSlice',
     initialState,
     reducers: {
-        uploadReceipt: (state, action: PayloadAction<ReceiptModel>) => {
+        setReceipt: (state, action: PayloadAction<ReceiptModel>) => {
             // uploading a receipt will automatically generate a uuid as id
             state.receipt = {
                 id: action.payload.id, 
@@ -43,7 +44,7 @@ export const receiptSlice = createSlice({
 
 /* Action(s) */
 export const {
-    uploadReceipt,
+    setReceipt,
     deleteReceipt
 } = receiptSlice.actions;
 

@@ -25,19 +25,19 @@ import {
 import styles from './LoadingContainer.module.scss';
 
 const LoadingContainer: React.FC = () => {
-    const keyValueState = useSelector((state: RootState) => state.keyValue);
+    const loadingState = useSelector((state: RootState) => state.loading);
 
     return (
         <React.Fragment>
-            {keyValueState.loading.content.show ? (
+            {loadingState.show ? (
                 <IonBackdrop
                     className={styles.backdrop}
                 />
             ) : undefined}
             <TailSpin
-                visible={keyValueState.loading.content.show}
-                height={96}
-                width={96}
+                visible={loadingState.show}
+                height={92}
+                width={92}
                 color={'var(--ion-color-secondColor)'}
                 ariaLabel="tail-spin-loading"
                 radius={1}

@@ -10,7 +10,10 @@ import {
 } from 'src/redux/features/receiptSlice';
 
 import {
-    showToast,
+    clearOCRAzureResult
+} from 'src/redux/features/ocrAzureResultSlice';
+
+import {
     setToast
 } from 'src/redux/features/toastSlice';
 
@@ -49,18 +52,24 @@ export const OPTION_FAB_BTN: OptionFabBtnModel[] = [
         icon: trash,
         backgroundColor: 'var(--ion-color-thirdColor)',
         click: (dispatch: Dispatch, receipt: ReceiptModel) => { 
-            ServiceLoader.azure().deleteReceipt(receipt).then((response: AxiosResponse) => {
-                console.log(response);
-                dispatch(setToast({
-                    icon: '/assets/icon/lightbulb.svg',
-                    message: response.data.statusMessage,
-                    color: 'var(--ion-color-infoColor)'
-                }));
-                dispatch(showToast(true));
-            }).catch(error => {
-                console.log(error.response.data.message);
-            });
-            dispatch(deleteReceipt()); 
+            /*** 
+             * If receipt was uploaded to Blob Storage, only deleteReceipt() from AzureService will be called
+             * Otherwise, the preview of receipt will be cleared without any further actions
+            ***/
+            if(receipt.uploadedToBlobStorage) {
+                ServiceLoader.azure().deleteReceipt(receipt).then((response: AxiosResponse) => {
+                    // dispatch(setToast({
+                    //     show: true,
+                    //     content: {
+                    //         icon: '/assets/icon/lightbulb.svg',
+                    //         message: response.data.statusMessage,
+                    //         color: 'var(--ion-color-infoColor)'
+                    //     }
+                    // }));
+                    // dispatch(clearOCRAzureResult());
+                });
+            }
+            dispatch(deleteReceipt());
         }
     }
 ];

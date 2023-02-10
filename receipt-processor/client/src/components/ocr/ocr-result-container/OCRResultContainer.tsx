@@ -6,6 +6,11 @@ import {
   fastFoodSharp
 } from 'ionicons/icons';
 
+/* Model(s) */
+import {
+    OCRAzureResultModel 
+} from 'src/shared/models/ocrAzureResult';
+
 /* Component(s) */
 import IllustrationContainer from 'src/components/shared/illustration-container/IllustrationContainer';
 
@@ -14,13 +19,13 @@ import styles from './OCRResultContainer.module.scss';
 
 /* Interface(s) */
 interface OCRResultContainerProps {
-    ocrResult?: any;
+    ocrAzureResult?: OCRAzureResultModel;
 }
 
-const OCRResultContainer: React.FC<OCRResultContainerProps> = ({ ocrResult }) => {
+const OCRResultContainer: React.FC<OCRResultContainerProps> = ({ ocrAzureResult }) => {
     return (
-        <div className={`${styles.ocr_result_container} ${ocrResult ? styles.block_container : styles.flex_container}`}>
-            {ocrResult ? (
+        <div className={`${styles.ocr_result_container} ${ocrAzureResult ? styles.block_container : styles.flex_container}`}>
+            {ocrAzureResult ? (
                 <div></div>
             ) : (
                 <IllustrationContainer 

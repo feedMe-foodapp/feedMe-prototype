@@ -1,26 +1,33 @@
 /* ocrAzureResult.ts (model) */
 
 export interface OCRAzureResultModel {
-    status: string;
-    analyzeResult: AzureAnalyzeResultModel;
+    kind: string;
+    properties: PropertiesModel;
 }
 
-export interface AzureAnalyzeResultModel {
-    readResults: AzureReadResultsModel[];
+interface PropertiesModel {
+    description: DescriptionModel;
+    totalPrice: TotalPriceModel;
 }
 
-interface AzureReadResultsModel {
-    lines: AzureLinesModel[];
-}
-
-interface AzureLinesModel {
-    boundingBox: number[];
-    text: string;
-    words: AzureWordsModel[];
-}
-
-interface AzureWordsModel {
-    boundingBox: number[];
-    text: string;
+interface DescriptionModel {
+    boundingRegions: BoundingRegionsModel;
     confidence: number;
+    content: string;
+    kind: string;
+    value: string;
 }
+
+interface TotalPriceModel {
+    boundingRegions: BoundingRegionsModel;
+    confidence: number;
+    content: string;
+    kind: string;
+    value: number;
+}
+
+interface BoundingRegionsModel {
+    boundingBox: number[];
+    pageNumber: number;
+}
+

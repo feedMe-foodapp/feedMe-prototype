@@ -1,3 +1,4 @@
+
 /* azureService.ts */
 
 /* Axios */
@@ -15,26 +16,15 @@ import {
 
 export class AzureService {
 
-    /*
-    * Endpoint /upload to upload receipt to Blob Storage
-    * Request body contains the values { id: UUID, content: Base64 } of type ReceiptModel
-    */
+    // Endpoint /upload to upload receipt to Blob Storage
     public uploadReceipt(receipt: ReceiptModel): Promise<AxiosResponse> {
         return axios.post(`http://${environments.azure.host}:${environments.azure.port}/${environments.azure.prefix}/upload`, receipt);
     }
-    /*
-    * Endpoint /analyze to analyze receipt with the service Form Recognizer
-    * This method will be executed right after uploadReceipt() has finished
-    * Methods uploadReceipt() and analyzeReceipt() bind together and will be exectuted after button to process receipt is clicked
-    */
+    // Endpoint /analyze to analyze receipt from Blob Storage with receipt as parameter
     public analyzeReceipt(receipt: ReceiptModel): Promise<AxiosResponse> {
         return axios.post(`http://${environments.azure.host}:${environments.azure.port}/${environments.azure.prefix}/analyze`, receipt);
     }
-
-    /*
-    * Endpoint /delete to delete receipt from Blob Storage
-    * This method will be executed after method 'delete' from 'OptionFabContainer.tsx' is called
-    */
+    // Endpoint /delete to delete receipt from Blob Storage wit receipt as parameter
     public deleteReceipt(receipt: ReceiptModel): Promise<AxiosResponse> {
         return axios.post(`http://${environments.azure.host}:${environments.azure.port}/${environments.azure.prefix}/delete`, receipt);
     }

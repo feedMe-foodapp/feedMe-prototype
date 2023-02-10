@@ -9,58 +9,45 @@ import storage from 'redux-persist/es/storage';
 
 import {
     persistStore,
-    persistReducer,
-    FLUSH,
-    REHYDRATE,
-    PAUSE,
-    PERSIST,
-    PURGE,
-    REGISTER
+    persistReducer
 } from 'redux-persist';
 
 /* Reducer(s) */
 import receiptReducer from 'src/redux/features/receiptSlice';
-import ocrResultReducer from 'src/redux/features/ocrResultSlice';
+// import ocrAzureResultReducer from 'src/redux/features/ocrAzureResultSlice';
 import toastReducer from 'src/redux/features/toastSlice';
-import keyValueReducer from 'src/redux/features/keyValueSlice';
+import loadingReducer from 'src/redux/features/loadingSlice';
+import tooltipReducer from 'src/redux/features/tooltipSlice';
 
 const persistConfig = {
     receipt: {
         key: 'receipt',
         storage
     },
-    ocrResult: {
-        key: 'ocrResult',
-        storage
-    }
+    // ocrResult: {
+    //     key: 'ocrAzureResult',
+    //     storage
+    // }
 };
 
 const persistedReducer = {
     receipt: persistReducer(persistConfig.receipt, receiptReducer),
-    ocrResult: persistReducer(persistConfig.ocrResult, ocrResultReducer)
+    // ocrAzureResult: persistReducer(persistConfig.ocrResult, ocrAzureResultReducer)
 }
 
 const store = configureStore({
     reducer: {
         receipt: persistedReducer.receipt,
-        ocrResult: persistedReducer.ocrResult,
+        // ocrAzureResult: persistedReducer.ocrAzureResult,
         toast: toastReducer,
-        keyValue: keyValueReducer
+        loading: loadingReducer,
+        tooltip: tooltipReducer
     },
     middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-        serializableCheck: {
-            ignoredActions: [
-                FLUSH, 
-                REHYDRATE, 
-                PAUSE, 
-                PERSIST, 
-                PURGE, 
-                REGISTER
-              ]
-        }
-    })
-})
+        getDefaultMiddleware({
+            serializableCheck: false
+        })
+});
 
 const persistor = persistStore(store);
 

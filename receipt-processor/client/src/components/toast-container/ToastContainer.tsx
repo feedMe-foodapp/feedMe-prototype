@@ -8,7 +8,7 @@ import {
 } from 'react-redux';
 
 import {
-    showToast
+    setToast
 } from 'src/redux/features/toastSlice';
 
 /* Ionic */
@@ -34,30 +34,43 @@ const ToastContainer: React.FC = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        setTimeout(() => {
-            dispatch(showToast(false));
-        }, 9500);
+        const timer = setTimeout(() => {
+            if(toastState.show) {
+                dispatch(setToast({show: false}));
+            }
+        }, 9000);
+        /***
+        * Always clear the timeout when the component unounts
+        * Otherwise, the code in the callback may be executed when the component isn't visible anymore
+        * It can also lead to memory leaks in the application. Since the timeout is still active after
+        * the component unmounts, the garbage collector won't collect the component.
+        * 
+        * https://felixgerschau.com/react-hooks-settimeout/
+        ***/
+        return () => {
+            clearTimeout(timer);
+        };
     });
 
     return (
         <React.Fragment>
             {toastState.show ? (
                 <div
-                    style={{ background: toastState.content.color }}
-                    className={styles.toast_container}>
+                    style={{ background: toastState.content?.color }}
+                    className={`${styles.toast_container}`}>
                     <div className={styles.toast}>
                         <div className={styles.message}>
-                            <IonIcon 
+                            <IonIcon
                                 className={styles.icon}
-                                icon={toastState.content.icon}
+                                icon={toastState.content?.icon}
                             />
-                            {toastState.content.message}
+                            {toastState.content?.message}
                         </div>
                         <IonFabButton
                             className={styles.fab_btn}
                             onClick={
                                 () => {
-                                    dispatch(showToast(false));
+                                    dispatch(setToast({show: false}))
                                 }
                             }>
                             <IonIcon

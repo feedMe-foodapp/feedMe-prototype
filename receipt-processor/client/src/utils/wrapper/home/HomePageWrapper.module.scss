@@ -1,0 +1,21 @@
+/* Stylesheet of HomePageWrapper.tsx */
+
+.home_page_wrapper {
+    .row {
+        .desktop_col {
+            display: none;
+        }
+    }
+}
+
+/* set Media Queries for different display sizes and orientation of devices */
+
+@media screen and (min-width: 1200px) {
+    .home_page_wrapper {
+        .row {
+            .desktop_col {
+                display: flex;
+            }
+        }
+    }
+}

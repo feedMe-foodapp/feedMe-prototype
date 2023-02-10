@@ -1,6 +1,7 @@
 /* Stylesheet of RPButton.tsx */
 
 .process_btn_container {
+    position: relative;
 
     .label {
         text-align: center;
@@ -11,8 +12,8 @@
     .process_btn {
         margin: 0 auto;
         margin-top: 21px;
-        height: 82px;
-        width: 82px;
+        height: 72px;
+        width: 72px;
     
         .icon {
             font-size: 32px;
@@ -21,3 +22,12 @@
 }
 
 /* set Media Queries for different display sizes and orientation of devices */
+
+@media screen and (min-width: 1920px) {
+    .process_btn_container {
+        .process_btn {
+            height: 82px;
+            width: 82px;
+        }
+    }
+}

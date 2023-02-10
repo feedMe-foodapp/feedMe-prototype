@@ -1,0 +1,47 @@
+/* Stylesheet of TooltipContainer.tsx */
+
+.tooltip_container {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    width: 90%;
+    background: var(--ion-color-infoColor);
+    border-radius: 52px;
+    opacity: 0.95;
+    z-index: 1000;
+
+    .grid_container {
+        padding: 0;
+
+        .col {
+            padding: 0;
+            display: flex;
+            align-items: center;
+
+            .icon {
+                color: #ffffff;
+                font-size: 24px;
+            }
+        }
+
+        .icon_col {
+            justify-content: center;
+        }
+    }
+
+    .message {
+        padding: 12px;
+        font-size: 16px;
+        color: var(--ion-color-secondTextColor);
+    }
+}
+
+/* set Media Queries for different display sizes and orientation of devices */
+
+@media screen and (min-width: 512px) {
+    .tooltip_container {
+        width: 100%;
+    }
+}

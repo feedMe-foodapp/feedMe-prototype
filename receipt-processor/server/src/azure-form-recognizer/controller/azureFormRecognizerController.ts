@@ -1,10 +1,15 @@
 /* Express */
-import { Request, Response, NextFunction, response,  } from "express";
+import { Request, Response, NextFunction, response } from "express";
 
+/* dotenv */
 import * as dotenv from "dotenv";
 
-/* Azure */
-import { BlobServiceClient } from "@azure/storage-blob";
+/* Microsoft Azure */
+import {
+  BlobDeleteResponse,
+  BlobServiceClient,
+  BlockBlobUploadResponse,
+} from "@azure/storage-blob";
 
 import { DefaultAzureCredential } from "@azure/identity";
 
@@ -27,12 +32,12 @@ import {
 
 dotenv.config();
 
-/*
+/***
  * Use DefaultAzureCredential() to connect to storage account
  *
  * Login to account with Azure-CLI:
  * https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli
- */
+ ***/
 
 // blobServiceClient
 const blobServiceClient = new BlobServiceClient(
@@ -60,7 +65,6 @@ const containerClient = blobServiceClient.getContainerClient(
 // );
 
 const uploadBlobImage = async (receipt: ReceiptModel) => {
-  // parse MIME-Type of Base64
   const imgType = getMimeTypeOfBase64(receipt.content);
   const imgBuffer = createImgBuffer(receipt.content);
 
@@ -68,23 +72,23 @@ const uploadBlobImage = async (receipt: ReceiptModel) => {
     `${receipt.id}.${imgType.split("/")[1]}`
   );
 
-  // option blobContentType to set MIME-Type of image
   const uploadBlobResponse = await blockBlobClient.upload(
     imgBuffer,
     imgBuffer.length,
     { blobHTTPHeaders: { blobContentType: imgType } }
   );
+  return uploadBlobResponse;
 };
 
 const analyzeBlobImage = async (receipt: ReceiptModel) => {
-  /*
+  /***
    * If receipt exists on device, a readable stream have to be created in order to recognize the values of the image.
    * Therefore, the method createReadStream() from package fs is used, which allows to work with the file system of a computer.
    * This was initially used to test the method beginAnalyzeDocument() from the service Form Recognizer and is not used any further.
    *
    * A receipt taken by the application, will be then uploaded to the Blob Storage to create a public accessable URL:
    * Example: 'https://feedmereceipts.blob.core.windows.net/receipts/example_receipt.jpg'
-   */
+   ***/
 
   // const readStream = fs.createReadStream();
 
@@ -94,11 +98,11 @@ const analyzeBlobImage = async (receipt: ReceiptModel) => {
   }`;
 
   const poller = await formRecognizerClient.beginAnalyzeDocument(
-    /*
+    /***
      * The prebuilt model 'Receipt' is used to recognize values from a receipt.
      * This is totally fine for the first usage of the prototype.
      * In the further development process, it is required to train a custom model for a specific usecase.
-     */
+     ***/
     PrebuiltModels.Receipt,
     blobPath,
     {
@@ -111,7 +115,7 @@ const analyzeBlobImage = async (receipt: ReceiptModel) => {
   const {
     documents: [receiptDocument],
   } = await poller.pollUntilDone();
-  const receiptItems = receiptDocument.fields.items;
+  const receiptItems = receiptDocument.fields.items?.values;
   return receiptItems;
 };
 
@@ -120,29 +124,30 @@ const deleteBlobImage = async (receipt: ReceiptModel) => {
   const blockBlobClient = containerClient.getBlockBlobClient(
     `${receipt.id}.${imgType.split("/")[1]}`
   );
-
-  await blockBlobClient.delete();
+  const deleteBlobResponse = await blockBlobClient.delete();
+  return deleteBlobResponse;
 };
 
 const uploadReceipt = (req: Request, res: Response, next: NextFunction) => {
   uploadBlobImage(req.body)
-    .then(() => {
+    .then((response: BlockBlobUploadResponse) => {
       res.statusMessage = "Uploading receipt was successful";
-      res.statusCode = 200;
+      res.statusCode = response._response.status;
       next();
     })
-    .catch(() => {
-      const error: CustomErrorResponseModel = new Error();
-      error.message = "Failed to upload receipt";
-      error.statusCode = 400;
+    .catch((error: BlockBlobUploadResponse) => {
+      const tmpError: CustomErrorResponseModel = new Error();
+      tmpError.message = "Failed to upload receipt";
+      tmpError.statusCode = error._response.status;
       next(error);
     });
 };
 
 const analyzeReceipt = (req: Request, res: Response, next: NextFunction) => {
   analyzeBlobImage(req.body)
-    .then((results) => {
-      res.json(results).status(200);
+    .then((response) => {
+      // res.send(response.poller.getResult()?.documents[0].fields.items);
+      res.send(response);
     })
     .catch(() => {
       const error: CustomErrorResponseModel = new Error();
@@ -154,15 +159,15 @@ const analyzeReceipt = (req: Request, res: Response, next: NextFunction) => {
 
 const deleteReceipt = (req: Request, res: Response, next: NextFunction) => {
   deleteBlobImage(req.body)
-    .then(() => { 
-      res.statusMessage = "Deleting receipt was successful",
-      res.statusCode = 200;
+    .then(() => {
+      (res.statusMessage = "Deleting receipt was successful"),
+        (res.statusCode = 200);
       next();
     })
-    .catch(() => {
-      const error: CustomErrorResponseModel = new Error();
-      error.message = "Receipt does not exist";
-      error.statusCode = 404;
+    .catch((error: BlobDeleteResponse) => {
+      const tmpError: CustomErrorResponseModel = new Error();
+      tmpError.message = "Receipt does not exist";
+      tmpError.statusCode = error._response.status;
       next(error);
     });
 };

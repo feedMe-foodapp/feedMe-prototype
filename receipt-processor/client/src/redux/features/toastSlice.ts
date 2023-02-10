@@ -2,20 +2,21 @@
 
 /* React-Redux */
 import {
-    createSlice
+    createSlice,
+    PayloadAction
 } from '@reduxjs/toolkit';
 
 /* Interface(s) */
-interface ToastState {
-    show: boolean;
-    content: {
-        icon: string;
-        message: string;
-        color: string;
+interface ToastSliceModel {
+    show: boolean; 
+    content?: {
+        icon?: string;
+        message?: string;
+        color?: string;
     }
 }
 
-const initialState: ToastState = {
+const initialState: ToastSliceModel = {
     show: false,
     content: {
         icon: '',
@@ -28,19 +29,16 @@ export const toastSlice = createSlice({
     name: 'toast',
     initialState,
     reducers: {
-        setToast: (state, action) => {
-            state.content = action.payload;
-        },
-        showToast: (state, action) => {
-            state.show = action.payload;
+        setToast: (state, action: PayloadAction<ToastSliceModel>) => {
+            state.show = action.payload.show;
+            state.content = action.payload.content;
         }
     }
 });
 
 /* Action(s) */
 export const {
-    setToast,
-    showToast
+    setToast
 } = toastSlice.actions;
 
 /* Reducer */

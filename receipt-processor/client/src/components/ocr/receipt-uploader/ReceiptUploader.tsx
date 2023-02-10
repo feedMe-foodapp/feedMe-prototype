@@ -7,7 +7,7 @@ import {
 } from 'react-redux';
 
 import {
-    uploadReceipt
+    setReceipt
 } from 'src/redux/features/receiptSlice';
 
 /* Ionic */
@@ -56,7 +56,7 @@ const ReceiptUploader: React.FC<ReceiptUploaderProps> = ({
             });
 
             if(image.dataUrl) {
-                dispatch(uploadReceipt({
+                dispatch(setReceipt({
                     id: uuidv4(), 
                     content: image.dataUrl, 
                     uploadedToBlobStorage: false
