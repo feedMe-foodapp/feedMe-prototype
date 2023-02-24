@@ -19,3 +19,11 @@ html {
 .sc-ion-loading-md {
   box-shadow: none !important;
 }
+
+.scroll-content {
+	overflow-y: hidden;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}

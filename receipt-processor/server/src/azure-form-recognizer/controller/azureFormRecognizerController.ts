@@ -115,7 +115,7 @@ const analyzeBlobImage = async (receipt: ReceiptModel) => {
   const {
     documents: [receiptDocument],
   } = await poller.pollUntilDone();
-  const receiptItems = receiptDocument.fields.items?.values;
+  const receiptItems =  receiptDocument.fields.items?.values;
   return receiptItems;
 };
 

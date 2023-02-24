@@ -3,8 +3,7 @@ import React from 'react';
 
 /* React-Redux */
 import { 
-    useSelector,
-    useDispatch
+    useSelector
 } from 'react-redux';
 
 // import {
@@ -49,7 +48,7 @@ interface AzureTabProps {
 }
 
 const AzureTab: React.FC<AzureTabProps> = ({ receipt }) => {
-    // const ocrAzureResult = useSelector((state: RootState) => state.ocrAzureResult);
+    const ocrAzureResult = useSelector((state: RootState) => state.ocrAzureResult);
 
     return (
         <React.Fragment>
@@ -76,7 +75,7 @@ const AzureTab: React.FC<AzureTabProps> = ({ receipt }) => {
                     receipt={receipt}
                 />
                 <OCRResultContainer 
-                    // ocrAzureResult={ocrAzureResult.ocrAzureResult}
+                    ocrAzureResult={ocrAzureResult.ocrAzureResult!}
                 />
                 <OCRProcessor
                     receipt={receipt}

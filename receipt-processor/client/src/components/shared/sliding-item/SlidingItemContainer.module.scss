@@ -1,0 +1,38 @@
+/* Stylesheet of SlidingItemContainer.tsx */
+
+.sliding_item_container {
+    padding: 0;
+    background: #3A4559;
+    
+    .sliding_item {
+        .result_item {
+            font-size: 16px;
+            border-bottom: 2px solid #445169;
+            --background: #3A4559;
+            color: var(--ion-color-secondTextColor);
+            --background-hover: #9fabc1;
+            --color-hover: #ffffff;
+        }
+
+        .item_option {
+            width: 72px;
+            --background: var(--ion-color-thirdColor);
+        
+            .icon {
+                font-size: 24px;
+            }
+        }
+    }
+}
+
+/* set Media Queries for different display sizes and orientation of devices */
+
+@media screen and (min-width: 1920px) {
+    .sliding_item_container {
+        .sliding_item {
+            .result_item {
+                font-size: 18px;
+            }
+        }
+    }
+}

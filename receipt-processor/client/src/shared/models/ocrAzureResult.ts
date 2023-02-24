@@ -1,13 +1,14 @@
 /* ocrAzureResult.ts (model) */
 
 export interface OCRAzureResultModel {
+    id: string;
     kind: string;
     properties: PropertiesModel;
 }
 
 interface PropertiesModel {
-    description: DescriptionModel;
     totalPrice: TotalPriceModel;
+    description: DescriptionModel;
 }
 
 interface DescriptionModel {

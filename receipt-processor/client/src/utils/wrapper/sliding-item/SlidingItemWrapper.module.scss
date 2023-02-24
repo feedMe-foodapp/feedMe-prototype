@@ -1,0 +1,21 @@
+/* Stylesheet of SlidingItemWrapper.tsx */
+
+.grid_container {
+    padding: 0;
+    height: 72px;
+
+    .row {
+        height: 100%;
+        width: 100%;
+        
+        .col {
+            display: flex;
+            align-items: center;
+            // background: #3A4559;
+
+            .line {
+                color: #586988;
+            }
+        }
+    }
+}

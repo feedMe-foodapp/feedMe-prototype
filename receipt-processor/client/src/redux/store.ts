@@ -14,7 +14,7 @@ import {
 
 /* Reducer(s) */
 import receiptReducer from 'src/redux/features/receiptSlice';
-// import ocrAzureResultReducer from 'src/redux/features/ocrAzureResultSlice';
+import ocrAzureResultReducer from 'src/redux/features/ocrAzureResultSlice';
 import toastReducer from 'src/redux/features/toastSlice';
 import loadingReducer from 'src/redux/features/loadingSlice';
 import tooltipReducer from 'src/redux/features/tooltipSlice';
@@ -24,21 +24,21 @@ const persistConfig = {
         key: 'receipt',
         storage
     },
-    // ocrResult: {
-    //     key: 'ocrAzureResult',
-    //     storage
-    // }
+    ocrResult: {
+        key: 'ocrAzureResult',
+        storage
+    }
 };
 
 const persistedReducer = {
     receipt: persistReducer(persistConfig.receipt, receiptReducer),
-    // ocrAzureResult: persistReducer(persistConfig.ocrResult, ocrAzureResultReducer)
+    ocrAzureResult: persistReducer(persistConfig.ocrResult, ocrAzureResultReducer)
 }
 
 const store = configureStore({
     reducer: {
         receipt: persistedReducer.receipt,
-        // ocrAzureResult: persistedReducer.ocrAzureResult,
+        ocrAzureResult: persistedReducer.ocrAzureResult,
         toast: toastReducer,
         loading: loadingReducer,
         tooltip: tooltipReducer

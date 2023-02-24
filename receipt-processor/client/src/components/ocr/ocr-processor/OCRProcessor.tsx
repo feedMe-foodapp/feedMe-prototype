@@ -22,6 +22,8 @@ import {
     setOCRAzureResult
 } from 'src/redux/features/ocrAzureResultSlice';
 
+import { v4 as uuidv4 } from 'uuid'
+
 /* Ionic */
 import {
     analytics
@@ -55,6 +57,7 @@ import ProcessBtnContainer from 'src/components/shared/process-btn-container/Pro
 
 /* Stylesheet */
 import styles from './OCRProcessor.module.scss';
+import { OCRAzureResultModel } from '../../../shared/models/ocrAzureResult';
 
 /* Interface(s) */
 interface OCRProcessorProps {
@@ -92,7 +95,11 @@ const OCRProcessor: React.FC<OCRProcessorProps> = ({ receipt }) => {
                                 //     }
                                 // }));
 
-                                dispatch(setOCRAzureResult(response.data));
+                                /***
+                                 * Default result of Form Recognizer does not contain any id
+                                 * But id is required to perform basic operations on result
+                                ***/
+                                dispatch(setOCRAzureResult(response.data.map((result: OCRAzureResultModel) => ({id: uuidv4(), kind: result.kind, properties: result.properties}))));
                             });
                         }
                     }

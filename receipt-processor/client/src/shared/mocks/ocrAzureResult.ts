@@ -6,6 +6,7 @@ import {
 } from 'src/shared/models/ocrAzureResult';
 
 export const OCR_AZURE_DEFAULT_RESULT: OCRAzureResultModel = {
+    id: '',
     kind: '',
     properties: {
         description: {
