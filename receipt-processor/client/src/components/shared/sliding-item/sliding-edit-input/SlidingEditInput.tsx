@@ -43,15 +43,13 @@ const SlidingEditInput: React.FC<SlidingEditInputProps> = ({
             <React.Fragment>
                 <IonInput
                     className={styles.sliding_edit_input}
-                    placeholder={editResult.properties.description?.content}
+                    placeholder={editResult.properties.description?.value}
                     onIonChange={
                         (e) => {
                             handleEditResult({
                                 ...editResult, properties: {
                                     ...editResult.properties, description: {
-                                        ...editResult.properties.description, value: {
-                                            value: e.detail.value?.trim()
-                                        }
+                                        ...editResult.properties.description, value: e.detail.value?.trim()
                                     }
                                 }
                             });

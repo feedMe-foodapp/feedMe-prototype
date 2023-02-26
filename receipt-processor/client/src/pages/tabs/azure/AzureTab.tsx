@@ -6,19 +6,6 @@ import {
     useSelector
 } from 'react-redux';
 
-// import {
-//     setToast
-// } from 'src/redux/features/toastSlice';
-
-// import { 
-//     setTooltip 
-// } from 'src/redux/features/tooltipSlice';
-
-// /* Ionic */
-// import {
-//     IonFabButton
-// } from '@ionic/react';
-
 /* Util(s) */
 import PlaygroundTabWrapper from 'src/utils/wrapper/playground/PlaygroundTabWrapper';
 
@@ -31,16 +18,12 @@ import {
     RootState
 } from 'src/redux/store';
 
-
-// import {
-//     Tooltip
-// } from 'src/shared/models/tooltip';
-
 /* Component(s) */
+import ModalContainer from 'src/components/shared/modal-container/ModalContainer';
 import ReceiptPreview from 'src/components/shared/receipt-preview/ReceiptPreview';
 import OCRResultContainer from 'src/components/ocr/ocr-result-container/OCRResultContainer';
 import OCRProcessor from 'src/components/ocr/ocr-processor/OCRProcessor';
-// import TooltipContainer from '../../../components/shared/tooltip/TooltipContainer';
+import OCRResultDetail from 'src/components/ocr/ocr-result-container/ocr-result-detail/OCRResultDetail';
 
 /* Interface(s) */
 interface AzureTabProps {
@@ -48,10 +31,17 @@ interface AzureTabProps {
 }
 
 const AzureTab: React.FC<AzureTabProps> = ({ receipt }) => {
+    const modalState = useSelector((state: RootState) => state.modal);
     const ocrAzureResult = useSelector((state: RootState) => state.ocrAzureResult);
 
     return (
         <React.Fragment>
+            <ModalContainer 
+                show={modalState.show}>
+                <OCRResultDetail 
+                    ocrAzureResultDetail={ocrAzureResult.ocrAzureResultDetail!}
+                />
+            </ModalContainer>
             {/* <IonFabButton style={{
                 position: 'absolute', top: '21px', right: '21px', zIndex: 1000
             }}

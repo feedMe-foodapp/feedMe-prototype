@@ -25,8 +25,8 @@ interface OCRResultContainerProps {
 
 const OCRResultContainer: React.FC<OCRResultContainerProps> = ({ ocrAzureResult }) => {
     return (
-        <div className={`${styles.ocr_result_container} ${ocrAzureResult.length ? styles.block_container : styles.flex_container}`}>
-            {ocrAzureResult.length ? (
+        <div className={`${styles.ocr_result_container} ${ocrAzureResult? styles.block_container : styles.flex_container}`}>
+            {ocrAzureResult ? (
                 <SlidingItemContainer
                     result={ocrAzureResult}
                 />

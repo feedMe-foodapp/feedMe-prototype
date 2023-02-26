@@ -2,7 +2,7 @@
 
 .grid_container {
     padding: 0;
-    height: 72px;
+    height: 62px;
 
     .row {
         height: 100%;
@@ -11,11 +11,18 @@
         .col {
             display: flex;
             align-items: center;
-            // background: #3A4559;
 
             .line {
                 color: #586988;
             }
         }
+    }
+}
+
+/* set Media Queries for different display sizes and orientation of devices */
+
+@media screen and (min-width: 1620px) {
+    .grid_container {
+        height: 72px;
     }
 }

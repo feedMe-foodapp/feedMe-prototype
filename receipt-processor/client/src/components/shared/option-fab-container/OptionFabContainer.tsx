@@ -79,19 +79,18 @@ const OptionFabContainer: React.FC<OptionFabContainerProps> = ({ optionFabBtn, r
                     return (
                         <IonFabButton
                             key={__index}
+                            style={{
+                                '--background': optionFabBtn.backgroundColor,
+                                opacity: optionFabBtn.key === OptionFabKey.DELETE
+                                    && receipt.content.length === 0 ? 0.5 : 1
+                            }}
                             className={styles.fab_list_btn}
-                            // style={{
-                            //     '--background': optionFabBtn.backgroundColor,
-                            //     opacity: optionFabBtn.key === OptionFabKey.DELETE
-                            //         && receipt.content.length === 0 ? 0.5 : 1
-                            // }}
                             onClick={
                                 () => {
                                     optionFabBtn.click(dispatch, receipt);
                                 }
                             }
-                            // disabled={optionFabBtn.key === OptionFabKey.DELETE && receipt.content.length === 0}
-                            >
+                            disabled={optionFabBtn.key === OptionFabKey.DELETE && receipt.content.length === 0}>
                             <IonIcon
                                 className={styles.icon}
                                 icon={optionFabBtn.icon}

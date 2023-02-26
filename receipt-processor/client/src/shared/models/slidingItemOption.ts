@@ -11,5 +11,5 @@ export interface SlidingItemOptionModel {
     name: SlidingItem;
     icon: string;
     color: string; 
-    click: Function;
+    click?: Function;
 }

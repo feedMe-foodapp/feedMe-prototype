@@ -18,6 +18,7 @@ import ocrAzureResultReducer from 'src/redux/features/ocrAzureResultSlice';
 import toastReducer from 'src/redux/features/toastSlice';
 import loadingReducer from 'src/redux/features/loadingSlice';
 import tooltipReducer from 'src/redux/features/tooltipSlice';
+import modalReducer from 'src/redux/features/modalSlice';
 
 const persistConfig = {
     receipt: {
@@ -41,7 +42,8 @@ const store = configureStore({
         ocrAzureResult: persistedReducer.ocrAzureResult,
         toast: toastReducer,
         loading: loadingReducer,
-        tooltip: tooltipReducer
+        tooltip: tooltipReducer,
+        modal: modalReducer
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({

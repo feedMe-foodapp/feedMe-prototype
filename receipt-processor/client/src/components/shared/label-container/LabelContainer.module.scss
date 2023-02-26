@@ -1,0 +1,16 @@
+/* Stylesheet of LabelContainer.tsx */
+
+.label_container {
+    margin: 52px 0px 32px 0px;
+    display: flex;
+    align-items: center;
+
+    .label {
+        margin: 0;
+    }
+
+    .icon {
+        margin: 0px 12px 0px 0px;
+        font-size: 24px;
+    }
+}

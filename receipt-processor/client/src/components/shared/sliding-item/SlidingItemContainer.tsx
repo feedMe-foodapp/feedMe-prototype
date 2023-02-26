@@ -6,6 +6,14 @@ import {
     useDispatch
 } from 'react-redux';
 
+import {
+    showModal
+} from 'src/redux/features/modalSlice';
+
+import {
+    setOCRAzureResultDetail
+} from 'src/redux/features/ocrAzureResultSlice';
+
 /* Ionic */
 import {
     IonList,
@@ -62,9 +70,7 @@ const SlidingItemContainer: React.FC<SlidingItemContainerProps> = ({
     };
 
     const onEdit = (result: OCRAzureResultModel) => editResult?.id === result.id ? true : false;
-
-    console.log(editResult)
-
+    
     return (
         <IonList className={`${styles.sliding_item_container} scroll`}>
             {result.map((result: OCRAzureResultModel, __index: number) => {
@@ -76,14 +82,23 @@ const SlidingItemContainer: React.FC<SlidingItemContainerProps> = ({
                         <IonItem
                             className={styles.result_item}
                             lines="none"
-                            button={onEdit(result) ? false : true}>
+                            button={onEdit(result) ? false : true}
+                            onClick={
+                                () => {
+                                    // to prevent opening modal when editable item gets clicked
+                                    if(!onEdit(result)) {
+                                        dispatch(showModal(true));
+                                    }
+                                    dispatch(setOCRAzureResultDetail(result));
+                                }
+                            }>
                             <SlidingItemWrapper>
                                 <React.Fragment>
                                     {__index + 1}
                                 </React.Fragment>
-                                <React.Fragment>
+                                <div className={styles.value}>
                                     {result.properties.description?.value}
-                                </React.Fragment>
+                                </div>
                             </SlidingItemWrapper>
                             {onEdit(result) ? (
                                 <SlidingEditInput
@@ -104,10 +119,15 @@ const SlidingItemContainer: React.FC<SlidingItemContainerProps> = ({
                                                 className={styles.item_option}
                                                 onClick={
                                                     () => {
-                                                        if (slidingEditItemOption.name === SlidingItem.CANCEL) {
-                                                            setEditResult(undefined);
+                                                        if (slidingEditItemOption.name === SlidingItem.CONFIRM) {
+                                                            slidingEditItemOption.click!(dispatch, editResult);
                                                         }
+                                                        /*** 
+                                                        * close IonItemSliding and set editResult undefined to 
+                                                        * ensure default behaviour of IonItem
+                                                        ***/ 
                                                         slidingItemRef.current?.closeOpened();
+                                                        setEditResult(undefined);
                                                     }
                                                 }>
                                                 <IonIcon
@@ -129,7 +149,7 @@ const SlidingItemContainer: React.FC<SlidingItemContainerProps> = ({
                                                 onClick={
                                                     () => {
                                                         if (slidingItemOption.name === SlidingItem.DELETE) {
-                                                            slidingItemOption.click(dispatch, result.id);
+                                                            slidingItemOption.click!(dispatch, result.id);
                                                         } else {
                                                             setEditResult(result);
                                                         }

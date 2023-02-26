@@ -14,12 +14,12 @@ import {
 /* Interface(s) */
 interface OCRAzureResultState {
     ocrAzureResult: OCRAzureResultModel[] | undefined;
-    editOCRAzureResult: OCRAzureResultModel | undefined;
+    ocrAzureResultDetail: OCRAzureResultModel | undefined;
 }
 
 const initialState: OCRAzureResultState = {
     ocrAzureResult: undefined,
-    editOCRAzureResult: undefined
+    ocrAzureResultDetail: undefined
 }
 
 export const ocrAzureResultSlice = createSlice({
@@ -29,8 +29,16 @@ export const ocrAzureResultSlice = createSlice({
         setOCRAzureResult: (state, action: PayloadAction<OCRAzureResultModel[]>) => {
             state.ocrAzureResult = action.payload;
         },
-        setEditOCRAzureResult: (state, action: PayloadAction<OCRAzureResultModel>) => {
-            state.editOCRAzureResult = action.payload;
+        setOCRAzureResultDetail: (state, action: PayloadAction<OCRAzureResultModel>) => {
+            state.ocrAzureResultDetail = action.payload;
+        },
+        updateOCRAzureResult: (state, action: PayloadAction<OCRAzureResultModel>) => {
+            // eslint-disable-next-line array-callback-return
+            state.ocrAzureResult?.map((ocrAzureResult: OCRAzureResultModel, __index: number) => {
+                if(ocrAzureResult.id === action.payload.id) {
+                    state.ocrAzureResult![__index].properties.description.value = action.payload.properties.description.value;
+                }
+            });
         },
         deleteOCRAzureResult: (state, action: PayloadAction<string>) => {
             state.ocrAzureResult = state.ocrAzureResult?.filter((ocrAzureResult: OCRAzureResultModel) => ocrAzureResult.id !== action.payload);
@@ -44,7 +52,8 @@ export const ocrAzureResultSlice = createSlice({
 /* Action(s) */
 export const {
     setOCRAzureResult,
-    setEditOCRAzureResult,
+    setOCRAzureResultDetail,
+    updateOCRAzureResult,
     deleteOCRAzureResult,
     clearOCRAzureResult
 } = ocrAzureResultSlice.actions;

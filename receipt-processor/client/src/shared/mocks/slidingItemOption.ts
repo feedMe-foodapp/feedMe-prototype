@@ -6,7 +6,7 @@ import {
 } from '@reduxjs/toolkit';
 
 import {
-    setEditOCRAzureResult,
+    updateOCRAzureResult,
     deleteOCRAzureResult
 } from 'src/redux/features/ocrAzureResultSlice';
 
@@ -33,13 +33,14 @@ export const SLIDING_EDIT_ITEM_OPTION: SlidingItemOptionModel[] = [
         name: SlidingItem.CONFIRM,
         icon: checkmark,
         color: 'var(--ion-color-successColor)',
-        click: () => {}
+        click: (dispatch: Dispatch, editResult: OCRAzureResultModel) => {
+            dispatch(updateOCRAzureResult(editResult));
+        }
     },
     {
         name: SlidingItem.CANCEL,
         icon: close,
-        color: 'var(--ion-color-infoColor)',
-        click: () => {}
+        color: 'var(--ion-color-infoColor)'
     }
 ];
 
@@ -48,9 +49,7 @@ export const SLIDING_ITEM_OPTION: SlidingItemOptionModel[] = [
         name: SlidingItem.EDIT, 
         icon: create,
         color: 'var(--ion-color-secondColor)',
-        click: (dispatch: Dispatch, result: OCRAzureResultModel) => {
-            dispatch(setEditOCRAzureResult(result));
-        }
+        click: (dispatch: Dispatch, result: OCRAzureResultModel) => {}
     },
     {
         name: SlidingItem.DELETE,
