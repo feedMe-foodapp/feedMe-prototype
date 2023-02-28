@@ -36,7 +36,9 @@ Die Texterkennung erfolgt mithilfe des cloudbasierten AI-Service **Form Recogniz
 
 <br />
 
-Für die erste Analyse wird der Kassenbeleg eines herkömmlichen Supermarktes herangezogen, der verschiedene Lebensmittel darauf enthält.
+Für die erste Analyse wird der Kassenbeleg eines herkömmlichen Supermarktes herangezogen, der verschiedene Lebensmittel enthält:
+
+
 
 https://learn.microsoft.com/de-de/azure/applied-ai-services/form-recognizer/overview?view=form-recog-3.0.0
 
