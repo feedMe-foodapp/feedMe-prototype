@@ -16,6 +16,10 @@ Dabei soll die Aufzeichnung und Verfolgung, sprich die Verwaltung von Lebensmitt
 
 <br />
 
+#### Allgemeine Beschreibung
+
+<br />
+
 Die Phasen der Implementierung des Prototyps **Receipt Processor** umfasst unter anderem:
 
 - Erkennen von Lebensmitteln auf einem Kassenbeleg eines Supermarkts
@@ -24,7 +28,15 @@ Die Phasen der Implementierung des Prototyps **Receipt Processor** umfasst unter
 
 <br />
 
-Die Texterkennung erfolgt mithilfe des cloudbasierten AI-Service **Form Recognizer** von **Microsoft Azure**, um Texte, Tabellen, Strukturen und Key-Values (Schlüsselwertpaare), mithilfe der Verfahren und Methoden der optischen Zeichenerkennung OCR, sowie diverser Technologien für ein besserers Dokumentenverständnis, zu extrahieren. Dabei wird das vortrainierte Model **PrebuiltModels.Receipt**
+Die Texterkennung erfolgt mithilfe des cloudbasierten AI-Service **Form Recognizer** von Microsoft Azure, um Texte, Tabellen, Strukturen und Key-Values (Schlüsselwertpaare), anhand der Verfahren und Methoden der optischen Zeichenerkennung OCR, sowie zusätzlicher Technologien für ein besseres Dokmentenverständnis, zu extrahieren. Dabei wird das vortrainierte Model **PrebuiltModels.Receipt (Belegmodell)** verwendet, welches leistungsstarke OCR-Funktionen mit Deep Learning-Modellen verbindet. Die Kassenbelege können verschiedene Strukturen und Formen (Layouts) aufweisen, sowie eine unterschiedliche Qualität besitzen. Neben dem vortrainierten Modell, soll im weiteren Verlauf der Implementierung, ein benutzerdefiniertes Modell erstellt und trainiert werden, um entsprechend individueller auf die gängigen Kassenbelege reagieren zu können. 
+
+<br />
+
+#### Erste Analyse & Erkenntnisse 
+
+<br />
+
+Für die erste Analyse wird der Kassenbeleg eines herkömmlichen Supermarktes herangezogen, der verschiedene Lebensmittel darauf enthält.
 
 https://learn.microsoft.com/de-de/azure/applied-ai-services/form-recognizer/overview?view=form-recog-3.0.0
 
