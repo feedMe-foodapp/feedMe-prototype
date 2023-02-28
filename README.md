@@ -12,12 +12,19 @@ Dabei soll die Aufzeichnung und Verfolgung, sprich die Verwaltung von Lebensmitt
 
 <br />
 
-<br />
-
-### Phase 1 (Minimal Viable Product) 
+### Prototyp - Minimal Viable Product
 
 <br />
 
-- Analyse Kassenbeleg mithilfe einer cloudbasierten Lösung (Microsoft Azure) 
-- Verwendung des vortrainierten Models **PrebuiltModels.Receipt**
+Die Phasen der Implementierung des Prototyps **Receipt Processor** umfasst unter anderem:
+
+- Erkennen von Lebensmitteln auf einem Kassenbeleg eines Supermarkts
+- Verwendung von cloudbasierten Lösungen und Modellen, um die Komplexität möglichst gering und die Lernkurve linear zu halten
+- Einfache und grundlegende Interaktion des Benutzers mit der Applikation (Verzicht auf eine vollständige und komplexe UI)
+
+<br />
+
+Die Texterkennung erfolgt mithilfe des cloudbasierten AI-Service **Form Recognizer** von **Microsoft Azure**, um Texte, Tabellen, Strukturen und Key-Values (Schlüsselwertpaare), mithilfe der Verfahren und Methoden der optischen Zeichenerkennung OCR, sowie diverser Technologien für ein besserers Dokumentenverständnis, zu extrahieren. Dabei wird das vortrainierte Model **PrebuiltModels.Receipt**
+
+https://learn.microsoft.com/de-de/azure/applied-ai-services/form-recognizer/overview?view=form-recog-3.0.0
 
