@@ -20,11 +20,11 @@ Dabei soll die Aufzeichnung und Verfolgung, sprich die Verwaltung von Lebensmitt
 
 <br />
 
-Die Phasen der Implementierung des Prototyps **Receipt Processor** umfasst unter anderem:
+Die erste Phase der Umsetzung des Prototyps **Receipt Processor** umfasst unter anderem:
 
-- Erkennen von Lebensmitteln auf einem Kassenbeleg eines Supermarkts
-- Verwendung von cloudbasierten Lösungen und Modellen, um die Komplexität möglichst gering und die Lernkurve linear zu halten
-- Einfache und grundlegende Interaktion des Benutzers mit der Applikation (Verzicht auf eine vollständige und komplexe UI)
+- Erkennen von Lebensmitteln und den dazugehörigen Informationen, die auf dem Kassenbeleg eines Supermarkts abgebildet werden
+- Integration und Anwendung von cloudbasierten Technologien, Modellen und Strategien, um die grundlegende Funktionsweise der Textanalyse zu veranschaulichen
+- Einfache Interaktion des Benutzers mit der Applikation
 
 <br />
 
@@ -32,11 +32,12 @@ Die Texterkennung erfolgt mithilfe des cloudbasierten AI-Service **Form Recogniz
 
 <br />
 
-#### Erste Analyse & Erkenntnisse 
+#### Referenz-Kassenbeleg
 
 <br />
 
-Für die erste Analyse wird der Kassenbeleg eines herkömmlichen Supermarktes herangezogen, der verschiedene Lebensmittel enthält:
+Für die erste Analyse wird ein **Referenz-Kassenbeleg (kurz RKB)** erstellt, der sich den den Kassenbeleg eines herkömmlichen Supermarkts orientiert und 
+entsprechend eine Auswahl von fiktiven Lebensmitteln, mit den dazugehörigen Informationen, darauf enthält:
 
 //TODO: Erstellen und Anzeigen eines Kassenbelegs (Referenz-Kassenbeleg)
 
