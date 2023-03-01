@@ -36,8 +36,7 @@ Die Texterkennung erfolgt mithilfe des cloudbasierten AI-Service **Form Recogniz
 
 <br />
 
-Für die erste Analyse wird ein **Referenz-Kassenbeleg (kurz RKB)** erstellt, der sich den den Kassenbeleg eines herkömmlichen Supermarkts orientiert und 
-entsprechend eine Auswahl von fiktiven Lebensmitteln, mit den dazugehörigen Informationen, darauf enthält:
+Der **Referenz-Kassenbeleg (kurz RKB)** orientiert sich an den Kassenbon eines herkömmlichen Supermarkts, der eine Auswahl an fiktiven Lebensmitteln mit relevanten Informationen enthält:
 
 //TODO: Erstellen und Anzeigen eines Kassenbelegs (Referenz-Kassenbeleg)
 
