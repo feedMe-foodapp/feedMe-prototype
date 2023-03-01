@@ -46,7 +46,7 @@ Der **Referenz-Kassenbeleg (kurz RKB)** orientiert sich an den Kassenbeleg eines
 
 <br />
 
-Übersicht der allgemeinen Vor- und Nachteile des RKB gegenüber einem realen Kassenbeleg:
+Übersicht der Vor- und Nachteile des RKB gegenüber einem realen Kassenbeleg:
 
 - Gleichbleibende und gute Qualität des Kassenbelegs 
 - Kein Qualitätsverlust durch eine schlechte Kamera, Belichtung, sowie durch einen schlechten Zustands des Papiers
