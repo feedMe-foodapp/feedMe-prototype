@@ -36,22 +36,23 @@ Die Texterkennung erfolgt mithilfe des cloudbasierten AI-Service **Form Recogniz
 
 <br />
 
-Der **Referenz-Kassenbeleg (kurz RKB)** orientiert sich an den Kassenbon eines herkömmlichen Supermarkts, der eine Auswahl an fiktiven Lebensmitteln mit relevanten Informationen enthält:
+Der **Referenz-Kassenbeleg (kurz RKB)** orientiert sich an den Kassenbeleg eines herkömmlichen Supermarkts, der folglich eine Auswahl an fiktiven Lebensmitteln mit relevanten Informationen enthält:
 
 //TODO: Erstellen und Anzeigen eines Kassenbelegs (Referenz-Kassenbeleg)
 
 <br />
 
-#### Vor- & Nachteile 
+#### <ins>Vor- & Nachteile</ins>
 
 <br />
 
-Die Vorteile des RKB gegenüber einem realen Kassenbeleg beziehen sich vor allem auf die allgemeine Qualität in der Darstellung und Repräsentation der einzelnen Textbausteine. 
+Zusammenfassung der grundlegenden Vor- und Nachteile des RKB gegenüber einem realen Kassenbeleg:
 
-So kann eine immer gleichbleibende Qualität des Kassenbelegs gewährleistet werden,  
-
-- Gleichbleibende und optimale Qualität des Belegs 
+- Gleichbleibende und optimale Qualität des Kassenbelegs 
 - Kein Qualitätsverlust durch Kamera, Belichtung, sowie Zustand des Papiers
+
+Die Vorteile des RKB gegenüber einem realen Kassenbeleg beziehen sich großteils auf die Qualität in der Darstellung und Repräsentation der einzelnen Textbausteine. 
+Die Genauigkeit der Analyse wird folglich nicht von Störfaktoren, wie z.B. Bildrauschen durch eine schlechte Kamera, fehlender Kontrast durch eine zu geringe Belichtung, oder nicht erkennbare Zeichen durch eine miserable Druckqualität, negativ beeinflusst. Dadurch kann der Fokus auf die eigentliche Anwendung der Methoden von OCR gelegt werden, ohne dabei die **Pre-Procssing-Verfahren** weiter berücksichtigen zu müssen, die nicht Bestandteil der ersten Phase der Implementierung des Prototyps sind.
 
 https://learn.microsoft.com/de-de/azure/applied-ai-services/form-recognizer/overview?view=form-recog-3.0.0
 
