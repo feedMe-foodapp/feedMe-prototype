@@ -46,13 +46,16 @@ Der **Referenz-Kassenbeleg (kurz RKB)** orientiert sich an den Kassenbeleg eines
 
 <br />
 
-Zusammenfassung der grundlegenden Vor- und Nachteile des RKB gegenüber einem realen Kassenbeleg:
+Übersicht der allgemeinen Vor- und Nachteile des RKB gegenüber einem realen Kassenbeleg:
 
-- Gleichbleibende und optimale Qualität des Kassenbelegs 
-- Kein Qualitätsverlust durch Kamera, Belichtung, sowie Zustand des Papiers
+- Gleichbleibende und gute Qualität des Kassenbelegs 
+- Kein Qualitätsverlust durch eine schlechte Kamera, Belichtung, sowie durch einen schlechten Zustands des Papiers
+- Folglich keine negative Auswirkung auf die Genauigkeit der Analyse
+- Methoden und Verfahren der Bildvorverarbeitung sind nicht weiter relevant  
+- Fokus liegt auf der Textanalyse und dem Erkennen von relevanten Informationen
 
 Die Vorteile des RKB gegenüber einem realen Kassenbeleg beziehen sich großteils auf die Qualität in der Darstellung und Repräsentation der einzelnen Textbausteine. 
-Die Genauigkeit der Analyse wird folglich nicht von Störfaktoren, wie z.B. Bildrauschen durch eine schlechte Kamera, fehlender Kontrast durch eine zu geringe Belichtung, oder nicht erkennbare Zeichen durch eine miserable Druckqualität, negativ beeinflusst. Dadurch kann der Fokus auf die eigentliche Anwendung der Methoden von OCR gelegt werden, ohne dabei die **Pre-Procssing-Verfahren** weiter berücksichtigen zu müssen, die nicht Bestandteil der ersten Phase der Implementierung des Prototyps sind.
+Die Genauigkeit der Analyse wird folglich nicht von Störfaktoren, wie z.B. Bildrauschen durch eine schlechte Kamera, fehlender Kontrast durch eine zu geringe Belichtung, oder nicht erkennbare Zeichen durch eine miserable Druckqualität, negativ beeinflusst. Dadurch kann der Fokus auf die eigentliche Anwendung der Methoden von OCR gelegt werden, ohne dabei die Verfahren der **Bildvorerarbeitung (Pre-Processing)** weiter berücksichtigen zu müssen, die nicht Bestandteil der ersten Phase der Implementierung des Prototyps sind.
 
 https://learn.microsoft.com/de-de/azure/applied-ai-services/form-recognizer/overview?view=form-recog-3.0.0
 
