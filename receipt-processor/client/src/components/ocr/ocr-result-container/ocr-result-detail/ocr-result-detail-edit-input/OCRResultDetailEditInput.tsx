@@ -11,23 +11,24 @@ import {
 } from 'src/shared/models/ocrAzureResult';
 
 /* Stylesheet */
-import styles from './ResultEditInput.module.scss';
+import styles from './OCRResultDetailEditInput.module.scss';
 
 /* Interface(s) */
-interface ResultEditInputProps {
+interface OCRResultDetailEditInputProps {
     ocrAzureResultDetail: OCRAzureResultModel;
     handleOCRResultEditDetail: Function;
 }
 
-const ResultEditInput: React.FC<ResultEditInputProps> = ({
+const OCRResultDetailEditInput: React.FC<OCRResultDetailEditInputProps> = ({
     ocrAzureResultDetail,
     handleOCRResultEditDetail
 }) => {
 
     return (
         <IonInput 
-            className={`${styles.result_edit_input} shadow`}
+            className={`${styles.ocr_result_detail_edit_input} shadow`}
             placeholder={ocrAzureResultDetail.properties.description?.value}
+            value={ocrAzureResultDetail.properties.description?.value}
             onIonChange={
                 (e) => {
                     handleOCRResultEditDetail({
@@ -43,4 +44,4 @@ const ResultEditInput: React.FC<ResultEditInputProps> = ({
     );
 };
 
-export default ResultEditInput;
+export default OCRResultDetailEditInput;

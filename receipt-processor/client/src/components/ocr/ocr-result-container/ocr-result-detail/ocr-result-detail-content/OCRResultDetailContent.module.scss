@@ -1,17 +1,15 @@
-/* Stylesheet of ResultDetailContent.tsx */
+/* Stylesheet of OCRResultDetailContent.tsx */
 
-.result_detail_content {
+.ocr_result_detail_content {
     margin: 0 auto;
     margin-top: 32px;
     width: 90%;
     color: var(--ion-color-secondTextColor);
     
-    .grid_container {
-        hr {
-            height: 2.5px;
-            background: #445168;
-        }
+    .grid_container { 
         .row {
+            margin: 0px 0px 21px 0px;
+
             .col {
                 .detail {
                     span {

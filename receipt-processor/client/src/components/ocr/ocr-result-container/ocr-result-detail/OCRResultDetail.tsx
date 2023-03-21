@@ -33,8 +33,8 @@ import {
 } from 'src/shared/models/ocrAzureResult';
 
 /* Component(s) */
-import ResultDetailToolbar from 'src/components/ocr/ocr-result-container/ocr-result-detail/result-detail-toolbar/ResultDetailToolbar'; 
-import ResultDetailContent from 'src/components/ocr/ocr-result-container/ocr-result-detail/result-detail-content/ResultDetailContent';
+import OCRResultDetailToolbar from 'src/components/ocr/ocr-result-container/ocr-result-detail/ocr-result-detail-toolbar/OCRResultDetailToolbar'; 
+import OCRResultDetailContent from 'src/components/ocr/ocr-result-container/ocr-result-detail/ocr-result-detail-content/OCRResultDetailContent';
 
 /* Stylesheet */
 import styles from './OCRResultDetail.module.scss';
@@ -58,10 +58,11 @@ const OCRResultContainer: React.FC<OCRResultDetailProps> = ({
 
     return (
         <ModalContainerWrapper>
-            <ResultDetailToolbar
-                name={ocrResultEditDetail.properties.description?.value}
+            <OCRResultDetailToolbar
+                value={ocrResultEditDetail.properties.description?.value}
+                ocrResultEditDetail={ocrResultEditDetail}
             />
-            <ResultDetailContent 
+            <OCRResultDetailContent 
                 ocrAzureResultDetail={ocrResultEditDetail}
                 handleOCRResultEditDetail={handleOCRResultEditDetail}
             />

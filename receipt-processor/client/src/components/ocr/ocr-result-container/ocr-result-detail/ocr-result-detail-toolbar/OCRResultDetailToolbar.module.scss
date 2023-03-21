@@ -1,12 +1,12 @@
-/* Stylesheet of ResultDetailToolbar.tsx */
+/* Stylesheet of OCRResultDetailToolbar.tsx */
 
-.result_detail_toolbar {
+.ocr_result_detail_toolbar {
     display: flex;
     height: 100%;
     align-items: center;
     background: var(--ion-color-primeColor);
 
-    .name {
+    .value {
         display: flex;
         align-items: center;
         color: var(--ion-color-secondTextColor);
@@ -24,17 +24,25 @@
 
     .fab_btn {
         position: absolute;
-        right: 21px;
-        --background: var(--ion-color-thirdColor);
         --box-shadow: none;
+    }
+
+    .delete {
+        right: 92px;
+        --background: var(--ion-color-thirdColor);
+    }
+
+    .close {
+        right: 21px;
+        --background: #3a4559;
     }
 }
 
 /* set Media Queries for different display sizes and orientation of devices */
 
 @media screen and (min-width: 1920px) {
-    .result_detail_toolbar {
-        .name {
+    .ocr_result_detail_toolbar {
+        .value {
             .icon {
                 font-size: 34px;
             }

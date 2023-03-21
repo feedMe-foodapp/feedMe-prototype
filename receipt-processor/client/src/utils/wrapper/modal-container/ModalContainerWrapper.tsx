@@ -28,7 +28,7 @@ const ModalContainerWrapper: React.FC<ModalContainerWrapperProps> = ({
                     {children[0]}
                 </IonCol>
             </IonRow>
-            <IonRow className={`${styles.row} ${styles.content_row}`}>
+            <IonRow className={`${styles.row} ${styles.content_row} scroll`}>
                 <IonCol
                     className={`${styles.col} ${styles.content_col}`}
                     size="12">

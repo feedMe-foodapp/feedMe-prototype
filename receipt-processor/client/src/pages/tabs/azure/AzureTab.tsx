@@ -20,6 +20,7 @@ import {
 
 /* Component(s) */
 import ModalContainer from 'src/components/shared/modal-container/ModalContainer';
+import CustomModal from 'src/components/shared/custom-modal/CustomModal';
 import ReceiptPreview from 'src/components/shared/receipt-preview/ReceiptPreview';
 import OCRResultContainer from 'src/components/ocr/ocr-result-container/OCRResultContainer';
 import OCRProcessor from 'src/components/ocr/ocr-processor/OCRProcessor';
@@ -42,24 +43,7 @@ const AzureTab: React.FC<AzureTabProps> = ({ receipt }) => {
                     ocrAzureResultDetail={ocrAzureResult.ocrAzureResultDetail!}
                 />
             </ModalContainer>
-            {/* <IonFabButton style={{
-                position: 'absolute', top: '21px', right: '21px', zIndex: 1000
-            }}
-            onClick={
-                () => {
-                    dispatch(setTooltip({
-                        id: Tooltip.AZURE_TAB,
-                        content: {
-                            message: 'Azure Tab'
-                        }
-                    }))
-                }
-            }>
-            </IonFabButton> */}
-            {/* <TooltipContainer 
-                id={Tooltip.AZURE_TAB}
-                scssProps={{ top: '72px' }}
-            /> */}
+            <CustomModal/>
             <PlaygroundTabWrapper>
                 <ReceiptPreview
                     receipt={receipt}
