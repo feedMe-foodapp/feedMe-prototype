@@ -1,0 +1,19 @@
+/* Stylesheet of LabeledInput.tsx */
+
+.label_container {
+    margin: 0px 0px 16px 0px;
+
+    h5 {
+        margin: 21px 0px 21px 0px;
+    }
+}
+
+.label_input {
+    --padding-start: 21px;
+    height: 62px;
+    border-radius: 52px;
+    z-index: 0;
+    --background: var(--ion-color-primeColor);
+}
+
+/* set Media Queries for different display sizes and orientation of devices */

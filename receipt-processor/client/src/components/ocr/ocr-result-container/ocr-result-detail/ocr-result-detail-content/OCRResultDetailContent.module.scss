@@ -1,0 +1,28 @@
+/* Stylesheet of OCRResultDetailContent.tsx */
+
+.ocr_result_detail_content {
+    margin: 0 auto;
+    margin-top: 32px;
+    width: 90%;
+    color: var(--ion-color-secondTextColor);
+    
+    .grid_container { 
+        .row {
+            margin: 0px 0px 21px 0px;
+
+            .col {
+                .detail {
+                    span {
+                        margin: 0px 12px 0px 0px;
+                        font-weight: lighter;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.label {
+    margin: 32px 0px 21px 0px;
+    color: var(--ion-color-secondTextColor);
+}

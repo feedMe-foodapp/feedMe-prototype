@@ -1,0 +1,34 @@
+/* Stylesheet of ModalContainerWrapper.tsx */
+
+.modal_container_wrapper {
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background: #3a4559;
+
+    .row {
+        .col {
+            padding: 0;
+        }
+
+        .toolbar_col {
+            height: 72px;
+        }
+    }
+
+    .content_row {
+        height: calc(100% - 72px);
+    }
+}
+
+/* set Media Queries for different display sizes and orientation of devices */
+
+@media screen and (min-width: 1920px) {
+    .modal_container_wrapper {
+        .row {
+            .toolbar_col {
+                height: 92px;
+            }
+        }
+    }
+}

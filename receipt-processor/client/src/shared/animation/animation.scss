@@ -1,0 +1,63 @@
+/* animation.scss */
+
+@keyframes slide-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-32px);
+    }
+}
+
+@keyframes slide-right {
+    0% {
+        transform: translate(-32px);
+    }
+    100% {
+        transform: translate(0px);
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0
+    }
+    75% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1
+    }
+}
+
+$left: 0.45s ease-in-out forwards;
+$right: 0.45s ease-in-out forwards;
+$trash: 0.25s ease-in-out forwards;
+$uploader: 0.45s ease-in-out forwards;
+$filter: 1s ease-in-out forwards;
+
+@keyframes slide-up {
+    0% {
+        transform: translateY(162px);
+        display: none;
+    }
+    100% {
+        transform: translateY(0);
+        display: block;
+    }
+}
+
+$toast: 0.5s ease-out;
+
+@keyframes slide-down {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(162px);
+    }
+}
+
+$toast-container: 2s 9s ease-in-out;
+
+

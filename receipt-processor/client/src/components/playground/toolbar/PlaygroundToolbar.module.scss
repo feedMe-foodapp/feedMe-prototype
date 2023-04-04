@@ -1,0 +1,56 @@
+/* Stylesheet of PlaygroundToolbar.tsx */
+
+.playground_toolbar {
+  display: flex;
+  height: 62px;
+  --background: var(--ion-color-primeColor);
+
+  .title {
+    margin: 0px 0px 0px 16px;
+    display: flex;
+    font-size: 21px;
+    text-align: center;
+    align-items: center;
+
+    .icon {
+      margin: 0px 12px 0px 0px;
+      color: var(--ion-color-secondColor);
+      font-size: 28px;
+    }
+
+    .first_span {
+      color: var(--ion-color-secondTextColor);
+      font-weight: lighter;
+    }
+
+    .second_span {
+      color: var(--ion-color-secondColor);
+      font-weight: bold;
+    }
+  }
+}
+
+/* set Media Queries for different display sizes and orientation of devices */
+
+@media screen and (min-width: 512px) {
+  .playground_toolbar {
+    height: 82px;
+
+    .title {
+      margin: 0px 0px 0px 24px;
+      text-align: left;
+    }
+  }
+}
+
+@media screen and(min-width: 1920px) {
+  .playground_toolbar {
+    .title {
+      font-size: 24px;
+
+      .icon {
+        font-size: 32px;
+      }
+    }
+  }
+}

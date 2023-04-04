@@ -1,0 +1,66 @@
+/* Stylesheet of ToastContainer.tsx */
+
+/* Animation */
+@import 'src/shared/animation/animation.scss';
+
+.toast_container {
+    position: absolute;
+    bottom: 0;
+    height: 68px;
+    width: 100%;
+    animation: slide-up $toast;
+
+    .toast {
+        display: flex;
+        margin: 0 auto;
+        height: 100%;
+        width: 100%;
+        align-items: center;
+        opacity: 0.95;
+
+        /* box-shadow */
+        box-shadow: 2px 2px 3px 0px rgba(32,32,32,0.66);
+        -webkit-box-shadow: 2px 2px 3px 0px rgba(32,32,32,0.66);
+        -moz-box-shadow: 2px 2px 3px 0px rgba(32,32,32,0.66);
+
+        .message {
+            display: flex;
+            margin: 0 auto;
+            align-items: center;
+            color: var(--ion-color-secondTextColor);
+            font-size: 18px;
+
+            .icon {
+                margin: 0px 8px 0px 0px;
+                font-size: 32px;
+            }
+        }
+
+        .fab_btn {
+            position: absolute;
+            right: 12px;
+            --background: transparent;
+            --box-shadow: none;
+        }
+    }
+}
+
+/* set Media Queries for different display sizes and orientation of device */
+
+@media screen and(min-width: 1200px) {
+    .toast_container {
+        .toast {
+            .grid_container {
+                .row {
+                    .info_col {
+                        display: flex;
+                    }
+
+                    .close_col {
+                        display: flex;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,14 @@
+/* Stylesheet of LoadingContainer.tsx */
+
+.backdrop {
+    background: #30394a;
+    opacity: 0.5;
+    z-index: 500;
+}
+
+.loading_container {
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}

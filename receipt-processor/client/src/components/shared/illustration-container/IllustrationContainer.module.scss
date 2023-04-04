@@ -1,0 +1,17 @@
+/* Stylesheet of IllustrationContainer.tsx */
+
+.illustration_container {
+  display: flex;
+  justify-content: center;
+}
+
+/* set Media Queries for different display sizes and orientation of devices */
+
+@media screen and(max-width: 512px) {
+  .illustration_container {
+    .icon {
+      height: 121px !important;
+      width: 121px !important;
+    }
+  }
+}

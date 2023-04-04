@@ -1,0 +1,33 @@
+/* Stylesheet of ModalContainer.tsx */
+
+/* set Media Queries for different display sizes and orientation of devices */
+
+@media screen and (max-height: 512px) {
+    @media screen and (orientation: landscape) {
+        .modal_container {
+            display: none;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .modal_container {
+        --height: 80%;
+        --width: 80%;
+        --border-radius: 12px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .modal_container {
+        --height: 80%;
+        --width: 50%;
+    }
+}
+
+@media screen and (min-width: 1620px) {
+    .modal_container {
+        --height: 70%;
+        --width: 40%;
+    }
+}
