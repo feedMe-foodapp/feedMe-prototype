@@ -2,15 +2,15 @@
 
 .playground_toolbar {
   display: flex;
-  height: 62px;
+  height: 72px;
   --background: var(--ion-color-primeColor);
 
   .title {
-    margin: 0px 0px 0px 16px;
     display: flex;
     font-size: 21px;
     text-align: center;
     align-items: center;
+    justify-content: center;
 
     .icon {
       margin: 0px 12px 0px 0px;
@@ -31,22 +31,22 @@
 }
 
 /* set Media Queries for different display sizes and orientation of devices */
-
 @media screen and (min-width: 512px) {
   .playground_toolbar {
     height: 82px;
 
     .title {
-      margin: 0px 0px 0px 24px;
-      text-align: left;
+      margin: 12px 0px 0px 24px;
+      justify-content: flex-start;
     }
   }
 }
 
-@media screen and(min-width: 1920px) {
+@media screen and (min-width: 1920px) {
   .playground_toolbar {
     .title {
-      font-size: 24px;
+      margin: 6px 0px 0px 21px;
+      font-size: 21px;
 
       .icon {
         font-size: 32px;

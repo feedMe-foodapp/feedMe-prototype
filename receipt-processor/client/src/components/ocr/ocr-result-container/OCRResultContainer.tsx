@@ -22,6 +22,8 @@ import SlidingItemContainer from 'src/components/shared/sliding-item/SlidingItem
 /* Stylesheet */
 import styles from './OCRResultContainer.module.scss';
 
+import { createRegExp } from 'src/utils/helper/tesseract';
+
 /* Interface(s) */
 interface OCRResultContainerProps {
     ocrResult: OCRTesseractResultModel[] | OCRAzureResultModel[];
@@ -32,6 +34,9 @@ const OCRResultContainer: React.FC<OCRResultContainerProps> = ({
     ocrResult,
     click
 }) => {
+
+    createRegExp(ocrResult as OCRTesseractResultModel[])
+
     return (
         <div className={`${styles.ocr_result_container} ${ocrResult? styles.block_container : styles.flex_container}`}>
             {ocrResult ? (

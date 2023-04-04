@@ -1,5 +1,10 @@
 /* React */
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+
+/* React Router */
+import {
+    useRouteMatch
+} from 'react-router-dom';
 
 /* Ionic */
 import {
@@ -8,9 +13,14 @@ import {
 } from '@ionic/react';
 
 import {
-    documentText,
+    receipt,
     cloud
 } from 'ionicons/icons';
+
+/* Model(s) */
+import {
+    PlaygroundTab
+} from 'src/shared/models/playgroundTab';
 
 /* Stylesheet */
 import styles from './PlaygroundToolbar.module.scss';
@@ -20,37 +30,15 @@ interface PlaygroundToolbarProps {
     title: string[];
 }
 
-const enum Tabs {
-    Tesseract = 'Tesseract',
-    AZURE = 'Azure'
-}
-
 const PlaygroundToolbar: React.FC<PlaygroundToolbarProps> = ({ title }) => {
-
-    // icon
-    const [icon, setIcon] = useState<string>('');
-
-    const handleIcon = (value: string[]) => {
-        switch (value[1]) {
-            case Tabs.Tesseract:
-                setIcon(documentText);
-                break;
-            case Tabs.AZURE:
-                setIcon(cloud);
-                break;
-        }
-    };
-
-    useEffect(() => {
-        handleIcon(title);
-    }, [title]);
+    const { path } = useRouteMatch();
 
     return (
         <IonToolbar className={styles.playground_toolbar}>
             <div className={styles.title}>
                 <IonIcon
                     className={styles.icon}
-                    icon={icon}
+                    icon={path.includes(PlaygroundTab.TESSERACT) ? receipt : cloud}
                 />
                 <span className={styles.first_span}>
                     {title[0]}

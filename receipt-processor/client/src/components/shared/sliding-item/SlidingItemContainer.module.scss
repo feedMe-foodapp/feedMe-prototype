@@ -8,7 +8,6 @@
         border-bottom: 2px solid #445169;
         
         .result_item {
-            font-size: 16px;
             --background: #3A4559;
             color: var(--ion-color-secondTextColor);
             --background-hover: #9fabc1;
@@ -35,13 +34,3 @@
 }
 
 /* set Media Queries for different display sizes and orientation of devices */
-
-@media screen and (min-width: 1920px) {
-    .sliding_item_container {
-        .sliding_item {
-            .result_item {
-                font-size: 18px;
-            }
-        }
-    }
-}

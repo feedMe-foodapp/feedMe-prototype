@@ -1,17 +1,17 @@
 /* React */
 import React from 'react';
 
-/* React-Redux */
-import { 
-    useSelector
-} from 'react-redux';
-
 /* React Router */
 import {
     useRouteMatch,
     Route,
     Redirect
 } from 'react-router-dom';
+
+/* React Redux */
+import { 
+    useSelector
+} from 'react-redux';
 
 /* Ionic */
 import {
@@ -27,7 +27,7 @@ import {
 } from '@ionic/react-router';
 
 import {
-    documentText,
+    receipt,
     cloud
 } from 'ionicons/icons';
 
@@ -76,16 +76,16 @@ const PlaygroundPage: React.FC = () => {
                     <IonTabButton
                         className={styles.tab_btn}
                         tab="tesseract"
-                        href={`${path}/tesseract`}>
+                        href={`${path}/${PlaygroundTab.TESSERACT}`}>
                         <IonIcon 
                             className={styles.icon}
-                            icon={documentText}
+                            icon={receipt}
                         />
                     </IonTabButton>
                     <IonTabButton
                         className={styles.tab_btn}
                         tab="azure"
-                        href={`${path}/azure`}>
+                        href={`${path}/${PlaygroundTab.AZURE}`}>
                         <IonIcon
                             className={styles.icon}
                             icon={cloud}

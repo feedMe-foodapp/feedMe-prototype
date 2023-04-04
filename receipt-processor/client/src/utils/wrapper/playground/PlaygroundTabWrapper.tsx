@@ -6,7 +6,10 @@ import {
     useRouteMatch
 } from 'react-router-dom';
 
-/* React-Redux */
+/* React Responsive */
+import MediaQuery from 'react-responsive';
+
+/* React Redux */
 import {
     useSelector
 } from 'react-redux';
@@ -68,10 +71,17 @@ const PlaygroundTabWrapper: React.FC<PlaygroundTabWrapperProps> = ({ children })
 
     return (
         <React.Fragment>
-            <PlaygroundToolbar
-                title={title}
-            />
+            <MediaQuery minWidth={512}>
+                <PlaygroundToolbar
+                    title={title}
+                />
+            </MediaQuery>
             <IonGrid className={`${styles.playground_tab_wrapper} scroll`}>
+                <MediaQuery maxWidth={512}>
+                    <PlaygroundToolbar
+                        title={title}
+                    />
+                </MediaQuery>
                 <IonRow className={styles.row}>
                     {children.map((child: React.ReactNode, __index: number) => {
                         return (
@@ -84,8 +94,8 @@ const PlaygroundTabWrapper: React.FC<PlaygroundTabWrapperProps> = ({ children })
                                     className={styles.card}>
                                     {child}
                                     {__index === 1 && path.includes(PlaygroundTab.TESSERACT) ? (
-                                        <RegexFabButton 
-                                        
+                                        <RegexFabButton
+                                            receipt={receiptState.receipt!}
                                         />
                                     ) : undefined}
                                     {__index === 2 ? (

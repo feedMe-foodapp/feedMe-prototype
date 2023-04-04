@@ -1,11 +1,15 @@
 /* Stylesheet of OptionFabContainer.tsx */
 
+/* Animation */
+@import 'src/shared/animation/animation.scss';
+
 .fab_list_btn {
   right: 12px;
   bottom: 12px;
 
   .fab_btn {
     --background: var(--linear-gradient);
+    animation: slide-right $right;
 
     .icon {
       color: #ffffff;

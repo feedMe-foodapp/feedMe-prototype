@@ -4,9 +4,12 @@
     position: relative;
 
     .label {
+        margin: 0 auto;
+        width: 80%;
         text-align: center;
-        line-height: 1.75;
+        line-height: 2;
         font-size: 18px;
+        font-weight: bolder;
     }
 
     .process_btn {
@@ -22,12 +25,3 @@
 }
 
 /* set Media Queries for different display sizes and orientation of devices */
-
-@media screen and (min-width: 1920px) {
-    .process_btn_container {
-        .process_btn {
-            height: 82px;
-            width: 82px;
-        }
-    }
-}

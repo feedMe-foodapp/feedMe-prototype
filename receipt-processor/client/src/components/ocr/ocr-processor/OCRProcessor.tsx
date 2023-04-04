@@ -6,14 +6,10 @@ import {
     useRouteMatch
 } from 'react-router-dom';
 
-/* React-Redux */
+/* React Redux */
 import {
     useDispatch
 } from 'react-redux';
-
-// import {
-//     setTooltip
-// } from 'src/redux/features/tooltipSlice';
 
 import {
     setLoading
@@ -32,7 +28,7 @@ import { v4 as uuidv4 } from 'uuid'
 
 /* Ionic */
 import {
-    analytics
+    receipt as analyzeReceipt
 } from 'ionicons/icons';
 
 /* Axios */
@@ -54,16 +50,12 @@ import {
     ReceiptModel
 } from 'src/shared/models/receipt';
 
-// import {
-//     Tooltip
-// } from 'src/shared/models/tooltip';
-
 import {
     OCRAzureResultModel
 } from 'src/shared/models/ocrAzureResult';
 
 /* Util(s) */
-import  {
+import {
     createOCRTesseractResultObject
 } from 'src/utils/helper/tesseract';
 
@@ -85,18 +77,12 @@ const OCRProcessor: React.FC<OCRProcessorProps> = ({ receipt }) => {
     return (
         <div className={`${styles.ocr_processor} ${styles.flex_container}`}>
             <ProcessBtnContainer
-                label={'Press button below to start analyzing document'}
-                icon={analytics}
+                label={'Press button below to start analyzing documents'}
+                icon={analyzeReceipt}
                 disabled={path.includes(PlaygroundTab.TESSERACT) ? !receipt : path.includes(PlaygroundTab.AZURE) ? !receipt?.uploadedToBlobStorage : false}
                 click={
                     () => {
-                        // if (path.includes(PlaygroundTab.AZURE) && !receipt?.uploadedToBlobStorage) {
-                        //     dispatch(setTooltip({
-                        //         id: Tooltip.OCR_PROCESSOR,
-                        //         content: { message: 'Upload image to Blob Storage' }
-                        //     }));
-                        // } else {
-                        /* There are two different ways to analyze a receipt: Tesseract.js & Azure*/
+                        /* There are two different ways to analyze a receipt: Tesseract & Azure*/
                         dispatch(setLoading(true));
 
                         if (path.includes(PlaygroundTab.TESSERACT)) {
@@ -127,7 +113,6 @@ const OCRProcessor: React.FC<OCRProcessorProps> = ({ receipt }) => {
                         }
                     }
                 }
-            // }
             />
         </div>
     );

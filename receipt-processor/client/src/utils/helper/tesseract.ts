@@ -7,8 +7,7 @@ import {
 
 export const createOCRTesseractResultObject = (result: any) => {
     const tmpOCRTesseractResult: OCRTesseractResultModel[] = [];
-
-    // eslint-disable-next-line array-callback-return
+    
     result.lines.map((line: any, __index: number) => {
         tmpOCRTesseractResult.push({
             id: __index,
@@ -19,4 +18,8 @@ export const createOCRTesseractResultObject = (result: any) => {
     });
 
     return tmpOCRTesseractResult;
+}
+
+export const createRegExp = (result: OCRTesseractResultModel[]) => {
+    result.map(res => console.log(res));
 }

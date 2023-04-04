@@ -10,11 +10,11 @@
 }
 
 @keyframes slide-right {
-    0% {
-        transform: translate(-32px);
+    from {
+        transform: translate(-32px) && rotate(-45deg);
     }
-    100% {
-        transform: translate(0px);
+    to {
+        transform: translate(0) && rotate(0);
     }
 }
 
