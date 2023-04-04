@@ -14,6 +14,7 @@ import {
 
 /* Reducer(s) */
 import receiptReducer from 'src/redux/features/receiptSlice';
+import ocrTesseractResultReducer from 'src/redux/features/ocrTesseractResultSlice';
 import ocrAzureResultReducer from 'src/redux/features/ocrAzureResultSlice';
 import toastReducer from 'src/redux/features/toastSlice';
 import loadingReducer from 'src/redux/features/loadingSlice';
@@ -25,7 +26,11 @@ const persistConfig = {
         key: 'receipt',
         storage
     },
-    ocrResult: {
+    ocrTesseractResult: {
+        key: 'ocrTesseractResult',
+        storage
+    },
+    ocrAzureResult: {
         key: 'ocrAzureResult',
         storage
     }
@@ -33,12 +38,14 @@ const persistConfig = {
 
 const persistedReducer = {
     receipt: persistReducer(persistConfig.receipt, receiptReducer),
-    ocrAzureResult: persistReducer(persistConfig.ocrResult, ocrAzureResultReducer)
+    ocrTesseractResult: persistReducer(persistConfig.ocrTesseractResult, ocrTesseractResultReducer),
+    ocrAzureResult: persistReducer(persistConfig.ocrAzureResult, ocrAzureResultReducer)
 }
 
 const store = configureStore({
     reducer: {
         receipt: persistedReducer.receipt,
+        ocrTesseractResult: persistedReducer.ocrTesseractResult,
         ocrAzureResult: persistedReducer.ocrAzureResult,
         toast: toastReducer,
         loading: loadingReducer,

@@ -21,6 +21,10 @@ import {
 
 /* Model(s) */
 import {
+    PlaygroundTab
+} from 'src/shared/models/playgroundTab';
+
+import {
     OptionFabBtnModel
 } from 'src/shared/models/optionFabBtn';
 
@@ -35,6 +39,7 @@ import {
 
 /* Component(s) */
 import PlaygroundToolbar from 'src/components/playground/toolbar/PlaygroundToolbar';
+import RegexFabButton from 'src/components/regex-fab-btn/RegexFabBtn';
 import OptionFabContainer from 'src/components/shared/option-fab-container/OptionFabContainer';
 
 /* Stylesheet */
@@ -78,10 +83,15 @@ const PlaygroundTabWrapper: React.FC<PlaygroundTabWrapperProps> = ({ children })
                                 <IonCard
                                     className={styles.card}>
                                     {child}
+                                    {__index === 1 && path.includes(PlaygroundTab.TESSERACT) ? (
+                                        <RegexFabButton 
+                                        
+                                        />
+                                    ) : undefined}
                                     {__index === 2 ? (
                                         <OptionFabContainer
                                             optionFabBtn={optionFabBtn}
-                                            receipt={receiptState.receipt}
+                                            receipt={receiptState.receipt!}
                                         />
                                     ) : undefined}
                                 </IonCard>

@@ -8,6 +8,7 @@ import {
 } from '@ionic/react';
 
 import {
+    documentText,
     cloud
 } from 'ionicons/icons';
 
@@ -20,6 +21,7 @@ interface PlaygroundToolbarProps {
 }
 
 const enum Tabs {
+    Tesseract = 'Tesseract',
     AZURE = 'Azure'
 }
 
@@ -30,8 +32,12 @@ const PlaygroundToolbar: React.FC<PlaygroundToolbarProps> = ({ title }) => {
 
     const handleIcon = (value: string[]) => {
         switch (value[1]) {
+            case Tabs.Tesseract:
+                setIcon(documentText);
+                break;
             case Tabs.AZURE:
                 setIcon(cloud);
+                break;
         }
     };
 

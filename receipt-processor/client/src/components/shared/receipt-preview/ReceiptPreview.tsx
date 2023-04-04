@@ -1,6 +1,11 @@
 /* React */
 import React from 'react';
 
+/* React Router */
+import {
+    useRouteMatch
+} from 'react-router-dom';
+
 /* Ionic */
 import {
     imagesSharp
@@ -13,6 +18,10 @@ import {
 } from '@pronestor/react-zoom-pan-pinch';
 
 /* Model(s) */
+import {
+    PlaygroundTab
+} from 'src/shared/models/playgroundTab';
+
 import {
     ReceiptModel
 } from 'src/shared/models/receipt';
@@ -30,9 +39,11 @@ interface ReceiptPreviewProps {
 }
 
 const ReceiptPreview: React.FC<ReceiptPreviewProps> = ({ receipt }) => {
+    const { path } = useRouteMatch();
+
     return (
         <div className={styles.receipt_preview}>
-            {receipt.content ? (
+            {receipt ? (
                 <React.Fragment>
                     <TransformWrapper>
                         <TransformComponent
@@ -45,9 +56,11 @@ const ReceiptPreview: React.FC<ReceiptPreviewProps> = ({ receipt }) => {
                             />
                         </TransformComponent>
                     </TransformWrapper>
-                    <BlobUploadFabBtn 
-                        receipt={receipt}
-                    />
+                    {path.includes(PlaygroundTab.AZURE) ? (
+                        <BlobUploadFabBtn
+                            receipt={receipt}
+                        />
+                    ): undefined}
                 </React.Fragment>
             ) : (
                 <IllustrationContainer

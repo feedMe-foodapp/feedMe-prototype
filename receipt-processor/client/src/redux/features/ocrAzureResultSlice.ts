@@ -1,6 +1,6 @@
 /* ocrAzureResultSlice.ts */
 
-/* React-Redux */
+/* React Redux */
 import {
     createSlice,
     PayloadAction
@@ -23,7 +23,7 @@ const initialState: OCRAzureResultState = {
 }
 
 export const ocrAzureResultSlice = createSlice({
-    name: 'ocrAzureResultSlice',
+    name: 'ocrAzureResult',
     initialState,
     reducers: {
         setOCRAzureResult: (state, action: PayloadAction<OCRAzureResultModel[]>) => {

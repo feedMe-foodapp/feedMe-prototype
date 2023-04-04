@@ -13,15 +13,11 @@ import {
 
 /* Interface(s) */
 interface ReceiptState {
-    receipt: ReceiptModel;
+    receipt: ReceiptModel | undefined;
 };
 
 const initialState: ReceiptState = {
-    receipt: {
-        id: '',
-        content: '',
-        uploadedToBlobStorage: false
-    }
+    receipt: undefined
 };
 
 export const receiptSlice = createSlice({

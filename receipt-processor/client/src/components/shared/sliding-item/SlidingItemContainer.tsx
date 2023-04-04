@@ -1,11 +1,12 @@
 /* React */
 import React, { useRef, useState } from 'react';
 
-/* React-Redux */
+/* React Router */
 import {
-    useDispatch
-} from 'react-redux';
+    useRouteMatch
+} from 'react-router-dom';
 
+/* React Redux */
 import {
     showModal
 } from 'src/redux/features/modalSlice';
@@ -25,6 +26,14 @@ import {
 } from '@ionic/react';
 
 /* Model(s) */
+import {
+    PlaygroundTab
+} from 'src/shared/models/playgroundTab';
+
+import {
+    OCRTesseractResultModel
+} from 'src/shared/models/ocrTesseractResult';
+
 import {
     OCRAzureResultModel
 } from 'src/shared/models/ocrAzureResult';
@@ -51,14 +60,16 @@ import styles from './SlidingItemContainer.module.scss';
 
 /* Interface(s) */
 interface SlidingItemContainerProps {
-    result: OCRAzureResultModel[];
+    ocrResult: OCRTesseractResultModel[] | OCRAzureResultModel[];
+    click: Function;
 }
 
 const SlidingItemContainer: React.FC<SlidingItemContainerProps> = ({
-    result
+    ocrResult,
+    click
 }) => {
+    const { path } = useRouteMatch();
     const slidingItemRef = useRef<HTMLIonItemSlidingElement>(null);
-    const dispatch = useDispatch();
     const slidingEditItemOption: SlidingItemOptionModel[] = SLIDING_EDIT_ITEM_OPTION;
     const slidingItemOption: SlidingItemOptionModel[] = SLIDING_ITEM_OPTION;
 
@@ -70,106 +81,101 @@ const SlidingItemContainer: React.FC<SlidingItemContainerProps> = ({
     };
 
     const onEdit = (result: OCRAzureResultModel) => editResult?.id === result.id ? true : false;
-    
+
     return (
-        <IonList className={`${styles.sliding_item_container} scroll`}>
-            {result.map((result: OCRAzureResultModel, __index: number) => {
-                return (
-                    <IonItemSliding
-                        ref={slidingItemRef}
-                        key={__index}
-                        className={styles.sliding_item}>
-                        <IonItem
-                            className={styles.result_item}
-                            lines="none"
-                            button={onEdit(result) ? false : true}
-                            onClick={
-                                () => {
-                                    // to prevent opening modal when editable item gets clicked
-                                    if(!onEdit(result)) {
-                                        dispatch(showModal(true));
+        <React.Fragment>
+
+            <IonList className={`${styles.sliding_item_container} scroll`}>
+                {ocrResult.map((result: any, __index: number) => {
+                    return (
+                        <IonItemSliding
+                            ref={slidingItemRef}
+                            key={__index}
+                            className={styles.sliding_item}>
+                            <IonItem
+                                className={styles.result_item}
+                                lines="none"
+                                button={onEdit(result) ? false : true}
+                                onClick={
+                                    () => {
+                                        click(result);
                                     }
-                                    dispatch(setOCRAzureResultDetail(result));
-                                }
-                            }>
-                            <SlidingItemWrapper>
-                                <React.Fragment>
-                                    {__index + 1}
-                                </React.Fragment>
-                                <div className={styles.value}>
-                                    {result.properties.description?.value}
-                                </div>
-                            </SlidingItemWrapper>
-                            {onEdit(result) ? (
-                                <SlidingEditInput
-                                    __index={__index + 1}
-                                    editResult={editResult!}
-                                    handleEditResult={handleEditResult}
-                                />
-                            ) : undefined}
-                        </IonItem>
-                        <IonItemOptions side="end">
-                            {onEdit(result) ? (
-                                <React.Fragment>
-                                    {slidingEditItemOption.map((slidingEditItemOption: SlidingItemOptionModel, __index: number) => {
-                                        return (
-                                            <IonItemOption
-                                                key={__index}
-                                                style={{ '--background': slidingEditItemOption.color }}
-                                                className={styles.item_option}
-                                                onClick={
-                                                    () => {
-                                                        if (slidingEditItemOption.name === SlidingItem.CONFIRM) {
-                                                            slidingEditItemOption.click!(dispatch, editResult);
-                                                        }
-                                                        /*** 
-                                                        * close IonItemSliding and set editResult undefined to 
-                                                        * ensure default behaviour of IonItem
-                                                        ***/ 
-                                                        slidingItemRef.current?.closeOpened();
-                                                        setEditResult(undefined);
-                                                    }
-                                                }>
-                                                <IonIcon
-                                                    className={styles.icon}
-                                                    icon={slidingEditItemOption.icon}
-                                                />
-                                            </IonItemOption>
-                                        );
-                                    })}
-                                </React.Fragment>
-                            ) : (
-                                <React.Fragment>
-                                    {slidingItemOption.map((slidingItemOption: SlidingItemOptionModel, __index: number) => {
-                                        return (
-                                            <IonItemOption
-                                                key={__index}
-                                                style={{ '--background': slidingItemOption.color }}
-                                                className={styles.item_option}
-                                                onClick={
-                                                    () => {
-                                                        if (slidingItemOption.name === SlidingItem.DELETE) {
-                                                            slidingItemOption.click!(dispatch, result.id);
-                                                        } else {
-                                                            setEditResult(result);
-                                                        }
-                                                        slidingItemRef.current?.closeOpened();
-                                                    }
-                                                }>
-                                                <IonIcon
-                                                    className={styles.icon}
-                                                    icon={slidingItemOption.icon}
-                                                />
-                                            </IonItemOption>
-                                        );
-                                    })}
-                                </React.Fragment>
-                            )}
-                        </IonItemOptions>
-                    </IonItemSliding>
-                );
-            })}
-        </IonList >
+                                }>
+                                <SlidingItemWrapper>
+                                    <React.Fragment>
+                                        {__index + 1}
+                                    </React.Fragment>
+                                    <div className={styles.value}>
+                                        {path.includes(PlaygroundTab.TESSERACT) ? result.text : result.properties.description?.value}
+                                    </div>
+                                </SlidingItemWrapper>
+                                {onEdit(result) ? (
+                                    <SlidingEditInput
+                                        __index={__index + 1}
+                                        editResult={editResult!}
+                                        handleEditResult={handleEditResult}
+                                    />
+                                ) : undefined}
+                            </IonItem>
+                            {/* <IonItemOptions side="end">
+                                    {onEdit(result) ? (
+                                        <React.Fragment>
+                                            {slidingEditItemOption.map((slidingEditItemOption: SlidingItemOptionModel, __index: number) => {
+                                                return (
+                                                    <IonItemOption
+                                                        key={__index}
+                                                        style={{ '--background': slidingEditItemOption.color }}
+                                                        className={styles.item_option}
+                                                        onClick={
+                                                            () => {
+                                                                if (slidingEditItemOption.name === SlidingItem.CONFIRM) {
+                                                                    slidingEditItemOption.click!(dispatch, editResult);
+                                                                }
+                                                                slidingItemRef.current?.closeOpened();
+                                                                setEditResult(undefined);
+                                                            }
+                                                        }>
+                                                        <IonIcon
+                                                            className={styles.icon}
+                                                            icon={slidingEditItemOption.icon}
+                                                        />
+                                                    </IonItemOption>
+                                                );
+                                            })}
+                                        </React.Fragment>
+                                    ) : (
+                                        <React.Fragment>
+                                            {slidingItemOption.map((slidingItemOption: SlidingItemOptionModel, __index: number) => {
+                                                return (
+                                                    <IonItemOption
+                                                        key={__index}
+                                                        style={{ '--background': slidingItemOption.color }}
+                                                        className={styles.item_option}
+                                                        onClick={
+                                                            () => {
+                                                                if (slidingItemOption.name === SlidingItem.DELETE) {
+                                                                    slidingItemOption.click!(dispatch, result.id);
+                                                                } else {
+                                                                    setEditResult(result);
+                                                                }
+                                                                slidingItemRef.current?.closeOpened();
+                                                            }
+                                                        }>
+                                                        <IonIcon
+                                                            className={styles.icon}
+                                                            icon={slidingItemOption.icon}
+                                                        />
+                                                    </IonItemOption>
+                                                );
+                                            })}
+                                        </React.Fragment>
+                                    )}
+                                </IonItemOptions> */}
+                        </IonItemSliding>
+                    );
+                })}
+            </IonList>
+        </React.Fragment>
     );
 };
 

@@ -10,6 +10,10 @@ import {
 } from 'src/redux/features/receiptSlice';
 
 import {
+    clearOCRTesseractResult
+} from 'src/redux/features/ocrTesseractResultSlice';
+
+import {
     clearOCRAzureResult
 } from 'src/redux/features/ocrAzureResultSlice';
 
@@ -66,9 +70,10 @@ export const OPTION_FAB_BTN: OptionFabBtnModel[] = [
                     //         color: 'var(--ion-color-infoColor)'
                     //     }
                     // }));
-                    // dispatch(clearOCRAzureResult());
+                    dispatch(clearOCRAzureResult());
                 });
             }
+            dispatch(clearOCRTesseractResult());
             dispatch(deleteReceipt());
         }
     }

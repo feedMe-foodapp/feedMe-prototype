@@ -7,7 +7,7 @@ import axios, { AxiosResponse } from 'axios';
 /* Environment(s) */
 import {
     environments
-} from 'src/environments/environment.dev';
+} from 'src/components/toast-container/environments/environment.dev';
 
 /* Model(s) */
 import {

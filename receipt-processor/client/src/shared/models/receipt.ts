@@ -1,4 +1,4 @@
-/* receiptModel.ts (model) */
+/* receiptModel.ts */
 
 export interface ReceiptModel {
     id: string;

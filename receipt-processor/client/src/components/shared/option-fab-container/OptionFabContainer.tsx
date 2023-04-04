@@ -82,7 +82,7 @@ const OptionFabContainer: React.FC<OptionFabContainerProps> = ({ optionFabBtn, r
                             style={{
                                 '--background': optionFabBtn.backgroundColor,
                                 opacity: optionFabBtn.key === OptionFabKey.DELETE
-                                    && receipt.content.length === 0 ? 0.5 : 1
+                                    && !receipt ? 0.5 : 1
                             }}
                             className={styles.fab_list_btn}
                             onClick={
@@ -90,7 +90,7 @@ const OptionFabContainer: React.FC<OptionFabContainerProps> = ({ optionFabBtn, r
                                     optionFabBtn.click(dispatch, receipt);
                                 }
                             }
-                            disabled={optionFabBtn.key === OptionFabKey.DELETE && receipt.content.length === 0}>
+                            disabled={optionFabBtn.key === OptionFabKey.DELETE && !receipt}>
                             <IonIcon
                                 className={styles.icon}
                                 icon={optionFabBtn.icon}

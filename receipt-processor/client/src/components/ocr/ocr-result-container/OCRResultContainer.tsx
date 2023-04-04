@@ -8,6 +8,10 @@ import {
 
 /* Model(s) */
 import {
+    OCRTesseractResultModel
+} from 'src/shared/models/ocrTesseractResult';
+
+import {
     OCRAzureResultModel
 } from 'src/shared/models/ocrAzureResult';
 
@@ -20,15 +24,20 @@ import styles from './OCRResultContainer.module.scss';
 
 /* Interface(s) */
 interface OCRResultContainerProps {
-    ocrAzureResult: OCRAzureResultModel[];
+    ocrResult: OCRTesseractResultModel[] | OCRAzureResultModel[];
+    click: Function;
 }
 
-const OCRResultContainer: React.FC<OCRResultContainerProps> = ({ ocrAzureResult }) => {
+const OCRResultContainer: React.FC<OCRResultContainerProps> = ({ 
+    ocrResult,
+    click
+}) => {
     return (
-        <div className={`${styles.ocr_result_container} ${ocrAzureResult? styles.block_container : styles.flex_container}`}>
-            {ocrAzureResult ? (
+        <div className={`${styles.ocr_result_container} ${ocrResult? styles.block_container : styles.flex_container}`}>
+            {ocrResult ? (
                 <SlidingItemContainer
-                    result={ocrAzureResult}
+                    ocrResult={ocrResult}
+                    click={click}
                 />
             ) : (
                 <IllustrationContainer

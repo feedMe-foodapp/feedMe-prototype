@@ -46,7 +46,7 @@ const ProcessBtnContainer: React.FC<ProcessBtn> = ({
                 className={styles.label}>
                 {label}
             </div>
-            <div onClick={disabled ? click : undefined}>
+            {/* <div onClick={disabled ? click : undefined}> */}
                 <IonFabButton
                     className={styles.process_btn}
                     disabled={disabled}
@@ -57,7 +57,7 @@ const ProcessBtnContainer: React.FC<ProcessBtn> = ({
                     />
                 </IonFabButton>
             </div>
-        </div>
+        // </div>
     );
 };
 

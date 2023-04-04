@@ -27,6 +27,7 @@ import {
 } from '@ionic/react-router';
 
 import {
+    documentText,
     cloud
 } from 'ionicons/icons';
 
@@ -34,7 +35,13 @@ import {
     RootState
 } from 'src/redux/store';
 
+/* Model(s) */
+import { 
+    PlaygroundTab 
+} from 'src/shared/models/playgroundTab'; 
+
 /* Tab(s) */
+import TesseractTab from 'src/pages/tabs/tesseract/TesseractTab';
 import AzureTab from 'src/pages/tabs/azure/AzureTab';
 
 /* Stylesheet */
@@ -49,18 +56,32 @@ const PlaygroundPage: React.FC = () => {
             {/* Tab Layout */}
             <IonTabs className={styles.tabs}>
                 <IonRouterOutlet>
-                    <Route exact path={`${path}/azure`}>
+                    <Route exact path={`${path}/${PlaygroundTab.TESSERACT}`}>
+                        <TesseractTab 
+                            receipt={receiptState.receipt!}
+                        />
+                    </Route>
+                    <Route exact path={`${path}/${PlaygroundTab.AZURE}`}>
                         <AzureTab 
-                            receipt={receiptState.receipt}
+                            receipt={receiptState.receipt!}
                         />
                     </Route>
                     <Route
-                        render={() => <Redirect to={`${path}/azure`} />}
+                        render={() => <Redirect to={`${path}/${PlaygroundTab.AZURE}`} />}
                     />
                 </IonRouterOutlet>
                 <IonTabBar
                     className={styles.tab_bar}
                     slot="bottom">
+                    <IonTabButton
+                        className={styles.tab_btn}
+                        tab="tesseract"
+                        href={`${path}/tesseract`}>
+                        <IonIcon 
+                            className={styles.icon}
+                            icon={documentText}
+                        />
+                    </IonTabButton>
                     <IonTabButton
                         className={styles.tab_btn}
                         tab="azure"
