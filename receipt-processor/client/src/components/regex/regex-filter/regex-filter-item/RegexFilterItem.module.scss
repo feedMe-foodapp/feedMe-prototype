@@ -1,0 +1,25 @@
+/* Stylesheet of RegexFilterItem.tsx */
+
+.regex_filter_item {
+    width: 100%;
+    --background: transparent;
+
+    .col {
+        padding: 0;
+        display: flex;
+
+        .label {
+            font-size: 16px;
+            color: #ffffff;
+        }
+    }
+
+    .checkbox_col {
+        justify-content: flex-end;
+
+        .checkbox {
+            --size: 26px;
+            --border-radius: 52px;
+        }
+    }
+}

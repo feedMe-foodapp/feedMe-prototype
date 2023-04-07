@@ -20,6 +20,7 @@ import toastReducer from 'src/redux/features/toastSlice';
 import loadingReducer from 'src/redux/features/loadingSlice';
 import tooltipReducer from 'src/redux/features/tooltipSlice';
 import modalReducer from 'src/redux/features/modalSlice';
+import regexFilterReducer from 'src/redux/features/regexFilterSlice';
 
 const persistConfig = {
     receipt: {
@@ -33,13 +34,18 @@ const persistConfig = {
     ocrAzureResult: {
         key: 'ocrAzureResult',
         storage
+    },
+    regexFilter: {
+        key: 'regexFilter',
+        storage
     }
 };
 
 const persistedReducer = {
     receipt: persistReducer(persistConfig.receipt, receiptReducer),
     ocrTesseractResult: persistReducer(persistConfig.ocrTesseractResult, ocrTesseractResultReducer),
-    ocrAzureResult: persistReducer(persistConfig.ocrAzureResult, ocrAzureResultReducer)
+    ocrAzureResult: persistReducer(persistConfig.ocrAzureResult, ocrAzureResultReducer),
+    regexFilter: persistReducer(persistConfig.regexFilter, regexFilterReducer)
 }
 
 const store = configureStore({
@@ -50,7 +56,8 @@ const store = configureStore({
         toast: toastReducer,
         loading: loadingReducer,
         tooltip: tooltipReducer,
-        modal: modalReducer
+        modal: modalReducer,
+        regexFilter: persistedReducer.regexFilter
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({

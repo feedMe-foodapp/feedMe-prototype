@@ -9,4 +9,5 @@
     bottom: 12px;
     --background: var(--linear-gradient);
     animation: slide-right $right;
+    z-index: 10;
 }

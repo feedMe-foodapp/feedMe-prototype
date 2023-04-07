@@ -42,7 +42,7 @@ import {
 
 /* Component(s) */
 import PlaygroundToolbar from 'src/components/playground/toolbar/PlaygroundToolbar';
-import RegexFabButton from 'src/components/regex-fab-btn/RegexFabBtn';
+import RegexFilter from 'src/components/regex/regex-filter/RegexFilter';
 import OptionFabContainer from 'src/components/shared/option-fab-container/OptionFabContainer';
 
 /* Stylesheet */
@@ -94,7 +94,7 @@ const PlaygroundTabWrapper: React.FC<PlaygroundTabWrapperProps> = ({ children })
                                     className={styles.card}>
                                     {child}
                                     {__index === 1 && path.includes(PlaygroundTab.TESSERACT) ? (
-                                        <RegexFabButton
+                                        <RegexFilter
                                             receipt={receiptState.receipt!}
                                         />
                                     ) : undefined}

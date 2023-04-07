@@ -8,7 +8,8 @@ import {
 } from '@ionic/react';
 
 import {
-    text
+    text,
+    close
 } from 'ionicons/icons'
 
 /* Model(s) */
@@ -22,16 +23,23 @@ import styles from './RegexFabBtn.module.scss';
 /* Interface(s) */
 interface RegexFabBtnProps {
     receipt: ReceiptModel;
+    showFilter: boolean;
+    handleFilter: Function;
 }
 
-const RegexFabBtn: React.FC<RegexFabBtnProps> = ({ receipt }) => {
+const RegexFabBtn: React.FC<RegexFabBtnProps> = ({ 
+    receipt, 
+    showFilter, 
+    handleFilter 
+}) => {
     return (
         <IonFabButton
             className={styles.regex_fab_btn}
-            disabled={!receipt}>
+            disabled={!receipt}
+            onClick={() => handleFilter(!showFilter)}>
             <IonIcon 
                 className={styles.icon}
-                icon={text}
+                icon={showFilter ? close : text}
             />
         </IonFabButton>
     );

@@ -1,6 +1,6 @@
 /* receiptSlice.ts */
 
-/* React-Redux */
+/* React Redux */
 import {
     createSlice, 
     PayloadAction
@@ -21,7 +21,7 @@ const initialState: ReceiptState = {
 };
 
 export const receiptSlice = createSlice({
-    name: 'receiptSlice',
+    name: 'receipt',
     initialState,
     reducers: {
         setReceipt: (state, action: PayloadAction<ReceiptModel>) => {
@@ -36,7 +36,7 @@ export const receiptSlice = createSlice({
             state.receipt = initialState.receipt;
         }
     }
-})
+});
 
 /* Action(s) */
 export const {
@@ -44,5 +44,5 @@ export const {
     deleteReceipt
 } = receiptSlice.actions;
 
-/* Reducer(s) */
+/* Reducer */
 export default receiptSlice.reducer;

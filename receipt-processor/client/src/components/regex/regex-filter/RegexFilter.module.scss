@@ -1,0 +1,43 @@
+/* Stylesheet of RegexFilter.tsx */
+
+/* Animation */
+@import 'src/shared/animation/animation.scss';
+
+.regex_filter {
+    .backdrop {
+        opacity: 0.15;
+    }
+    .card {
+        position: absolute;
+        height: 75%;
+        width: 100%;
+        background: #3a4559;
+        right: -10px;
+        bottom: -10px;
+        animation: slide-up 0.25s ease-out;
+        border-radius: 16px 16px 0px 0px;
+        z-index: 10;
+
+        /* box-shadow */
+        -webkit-box-shadow: 0px -1px 5px 0px rgba(32,32,32,0.25);
+        -moz-box-shadow: 0px -1px 5px 0px rgba(32,32,32,0.25);
+        box-shadow: 0px -1px 5px 0px rgba(32,32,32,0.25);
+
+        .label_container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 62px;
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: bolder;
+            background: #daaf77;
+        }
+
+        .grid_container {
+            padding: 0;
+            margin-top: 21px;
+            width: 100%;
+        }
+    }
+}
