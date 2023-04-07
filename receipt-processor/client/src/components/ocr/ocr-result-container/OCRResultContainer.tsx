@@ -35,7 +35,7 @@ const OCRResultContainer: React.FC<OCRResultContainerProps> = ({
     click
 }) => {
 
-    createRegExp(ocrResult as OCRTesseractResultModel[])
+    if(ocrResult) createRegExp(ocrResult as OCRTesseractResultModel[]);
 
     return (
         <div className={`${styles.ocr_result_container} ${ocrResult? styles.block_container : styles.flex_container}`}>

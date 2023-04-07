@@ -88,6 +88,7 @@ const OCRProcessor: React.FC<OCRProcessorProps> = ({ receipt }) => {
                         if (path.includes(PlaygroundTab.TESSERACT)) {
                             ServiceLoader.tesseract().recognize(receipt.content)
                                 .then((result: any) => {
+                                    console.log(result);
                                     dispatch(setLoading(false));
                                     dispatch(setOCRTesseractResult(createOCRTesseractResultObject(result)));
                                 });
